@@ -142,7 +142,7 @@ current_focus = [
 <div align="center">
 
 <img src="https://github-readme-stats.vercel.app/api?username=DhruvGarg111&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117" alt="GitHub Stats" height="165"/>
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=DhruvGarg111&theme=tokyonight&hide_border=true&background=0D1117" alt="GitHub Streak" height="165"/>
+<img src="https://streak-stats.demolab.com?user=DhruvGarg111&theme=tokyonight&hide_border=true&background=0D1117" alt="GitHub Streak" height="165"/>
 
 </div>
 
