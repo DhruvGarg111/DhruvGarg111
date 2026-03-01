@@ -1,9 +1,16 @@
 ﻿<div align="center">
 
-# Dhruv Garg
+<h1 align="center" style="border-bottom: none; font-size: 3.2em; margin-top: 20px; margin-bottom: 0;">Dhruv Garg</h1>
+<p align="center" style="font-size: 1.2em; color: #00D2FF; margin-top: 5px;">
+  <strong>AI / ML Engineer &bull; Computer Vision &bull; Generative AI</strong>
+</p>
+<p align="center" style="color: #8B949E;">
+  <em>Building practical AI systems, one focused iteration at a time.</em>
+</p>
 
-
-<img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=600&size=18&pause=1000&color=00D2FF&center=true&vCenter=true&width=600&height=30&lines=Machine+Learning+Engineer;Computer+Vision+Specialist;Backend+Systems+Developer;Open+Source+Contributor" alt="Roles" />
+<a href="https://dhruvgarg111.github.io/">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=500&size=16&pause=1500&color=8B949E&center=true&vCenter=true&width=600&height=30&lines=Experiment+%E2%86%92+Evaluate+%E2%86%92+Ship;PyTorch+%7C+OpenCV+%7C+TensorFlow;Turning+research+into+usable+tools" alt="Roles" />
+</a>
 
 <p align="center">
   <a href="https://github.com/DhruvGarg111"><img src="https://img.shields.io/badge/Computer_Vision-0D1117?style=for-the-badge&logo=opencv&logoColor=00D2FF" alt="Computer Vision" /></a>
@@ -32,6 +39,32 @@ I am a Machine Learning Engineer focused on **Computer Vision** and **Agentic AI
 
 ### 🌟 Flagship Projects
 
+<table>
+<tr>
+<td>
+
+### ⚡ [PixelQueue](https://github.com/DhruvGarg111/PixelQueue)
+> *Vision Intelligence Infrastructure: A high-performance, async control panel for human-in-the-loop AI annotation.*
+
+A sleek, dark-themed control panel designed for decoupled ML microservices and robust task queues, eliminating UX bottlenecks with pure speed and instantaneous rendering.
+
+**Key Innovations:**
+*   🚀 **Asynchronous ML:** Non-blocking AI auto-labeling via PyTorch, LayerCAM & YOLO.
+*   ⚡ **Zero-Latency UI:** Hardware-accelerated React-Konva staging canvas.
+*   🔄 **Decoupled Workers:** Infinite horizontal scaling using Celery message brokers.
+*   🔒 **Isolated Workspaces:** Robust Role-Based Access Control (RBAC) circuits.
+
+<div align="left">
+  <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" />
+  <img src="https://img.shields.io/badge/FastAPI-005571?style=flat-square&logo=fastapi" />
+  <img src="https://img.shields.io/badge/Celery-37814A?style=flat-square&logo=celery&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker-2CA5E0?style=flat-square&logo=docker&logoColor=white" />
+</div>
+
+</td>
+</tr>
+</table>
 <table>
 <tr>
 <td>
@@ -89,16 +122,16 @@ A **fast neural style transfer** implementation that generates stylized images u
 <tr>
 <td width="50%">
 
-**📐 [Depth Estimation + Semantic Seg.](https://github.com/DhruvGarg111/Depth-Estimation-with-Semantic-Segmentation)**  
-Multi-modal depth completion using RGB + sparse depth + semantic maps. Features a DepthNet-style encoder-decoder trained on NYU Depth v2 with multi-scale supervision.  
-`<PyTorch>` `<NYU-Depth-v2>` `<Encoder-Decoder>`
+**🧭 [pygog (Google CLI Agent)](https://github.com/DhruvGarg111/py-goog-cli)**  
+A powerful CLI for Google services (Gmail, Drive, Calendar). Features a built-in natural language AI agent supporting Gemini, DeepSeek, & OpenAI.  
+`<Python>` `<Google APIs>` `<LLM Agents>`
 
 </td>
 <td width="50%">
 
-**🧭 [pygog (Google CLI Agent)](https://github.com/DhruvGarg111/py-goog-cli)**  
-A powerful CLI for Google services (Gmail, Drive, Calendar). Features a built-in natural language AI agent supporting Gemini, DeepSeek, & OpenAI.  
-`<Python>` `<Google APIs>` `<LLM Agents>`
+**📐 [Depth Estimation + Semantic Seg.](https://github.com/DhruvGarg111/Depth-Estimation-with-Semantic-Segmentation)**  
+Multi-modal depth completion using RGB + sparse depth + semantic maps. Features a DepthNet-style encoder-decoder trained on NYU Depth v2 with multi-scale supervision.  
+`<PyTorch>` `<NYU-Depth-v2>` `<Encoder-Decoder>`
 
 </td>
 </tr>
