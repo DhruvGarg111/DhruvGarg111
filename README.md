@@ -18,6 +18,12 @@
   <a href="https://github.com/Nikolaev3Artem/fastapi-silk/pulls?q=is%3Apr+author%3ADhruvGarg111"><img src="https://img.shields.io/badge/Backend_Systems-0D1117?style=for-the-badge&logo=fastapi&logoColor=009688" alt="Backend Systems" /></a>
 </p>
 
+<p align="center">
+  <a href="https://dhruvgarg111.github.io/">
+    <img src="./dhruv-tech-ecosystem.svg" alt="Dhruv Garg tech ecosystem" />
+  </a>
+</p>
+
 *Building intelligent systems that see, understand, and create.*
 
 </div>
