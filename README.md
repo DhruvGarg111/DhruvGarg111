@@ -164,8 +164,12 @@ Multi-modal depth completion using RGB + sparse depth + semantic maps. Features 
 
 I actively contribute to the broader developer ecosystem, focusing heavily on AI tooling, backend infrastructure, and application security:
 
+*   🤖 **[SynapseKit/SynapseKit](https://github.com/SynapseKit/SynapseKit):** Major contributor across LLM providers, tools, and CI improvements.
+    *   Added multiple LLM providers, including Moonshot, Zhipu, Cloudflare, Databricks, AI21 Labs, Ernie, llama.cpp, Minimax, and Aleph Alpha.
+    *   Built tools for Google Calendar, API request building, AWS Lambda invocation, image analysis, speech-to-text, text-to-speech, Bing search, WolframAlpha, and YAML loading.
+    *   Fixed CI and code quality issues, including GitHub REST API usage and loader type hints.
 *   🔒 **[trusera/ai-bom](https://pypi.org/project/ai-bom/):** Contributor to the `ai-bom` package, a security tool that scans project workflows to generate CycloneDX-compliant AI Bills of Materials (SBOMs), securing LLM dependencies in production environments.
-*   ⚡ **[Nikolaev3Artem/fastapi-silk](https://github.com/Nikolaev3Artem/fastapi-silk):** Contributed core infrastructure to this FastAPI profiling tool. 
+*   ⚡ **[Nikolaev3Artem/fastapi-silk](https://github.com/Nikolaev3Artem/fastapi-silk):** Contributed core infrastructure to this FastAPI profiling tool.
     *   Engineered the database setup using SQLite and **Alembic** migrations *(PR #10)*.
     *   Implemented **pytest** coverage for the SQL profiler *(PR #9)*.
     *   Standardized the repository's open-source contribution guidelines *(PR #14)*.
