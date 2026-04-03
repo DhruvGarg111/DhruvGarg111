@@ -164,15 +164,11 @@ Multi-modal depth completion using RGB + sparse depth + semantic maps. Features 
 
 I actively contribute to the broader developer ecosystem, focusing heavily on AI tooling, backend infrastructure, and application security:
 
-*   🤖 **[SynapseKit/SynapseKit](https://github.com/SynapseKit/SynapseKit):** Major contributor across LLM providers, tools, and CI improvements.
-    *   Added multiple LLM providers, including Moonshot, Zhipu, Cloudflare, Databricks, AI21 Labs, Ernie, llama.cpp, Minimax, and Aleph Alpha.
-    *   Built tools for Google Calendar, API request building, AWS Lambda invocation, image analysis, speech-to-text, text-to-speech, Bing search, WolframAlpha, and YAML loading.
-    *   Fixed CI and code quality issues, including GitHub REST API usage and loader type hints.
-*   🔒 **[trusera/ai-bom](https://pypi.org/project/ai-bom/):** Contributor to the `ai-bom` package, a security tool that scans project workflows to generate CycloneDX-compliant AI Bills of Materials (SBOMs), securing LLM dependencies in production environments.
-*   ⚡ **[Nikolaev3Artem/fastapi-silk](https://github.com/Nikolaev3Artem/fastapi-silk):** Contributed core infrastructure to this FastAPI profiling tool.
-    *   Engineered the database setup using SQLite and **Alembic** migrations *(PR #10)*.
-    *   Implemented **pytest** coverage for the SQL profiler *(PR #9)*.
-    *   Standardized the repository's open-source contribution guidelines *(PR #14)*.
+*   🤖 **[SynapseKit/SynapseKit](https://github.com/SynapseKit/SynapseKit):** Led additions of multiple LLM providers and vector retrieval backends to broaden model support and storage options. Also built Discord automations for onboarding, moderation, and docs workflows to improve community operations.
+*   🧠 **[pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai):** Upgraded the Anthropic code‑execution tool integration to align with newer API versions. This keeps model tooling stable as providers evolve.
+*   🧪 **[matorral-project/matorral](https://github.com/matorral-project/matorral):** Wrote admin‑focused backend tests, including coverage for `make_superuser`. That hardens privileged flows and reduces regressions in management commands.
+*   🔒 **[trusera/ai-bom](https://pypi.org/project/ai-bom/):** Contributed to AI SBOM generation that audits project workflows. Outputs CycloneDX‑compliant dependency reports for stronger supply‑chain security.
+*   ⚡ **[Nikolaev3Artem/fastapi-silk](https://github.com/Nikolaev3Artem/fastapi-silk):** Implemented SQLite + Alembic migrations to establish durable database setup. Expanded profiler test coverage to improve reliability and maintenance.
 
 ---
 
