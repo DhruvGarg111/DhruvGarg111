@@ -174,6 +174,46 @@ I actively contribute to the broader developer ecosystem, focusing heavily on AI
     *   Implemented **pytest** coverage for the SQL profiler *(PR #9)*.
     *   Standardized the repository's open-source contribution guidelines *(PR #14)*.
 
+### Recent PRs (since 2026-03-27)
+
+**pydantic/pydantic-ai**
+- [#4958](https://github.com/pydantic/pydantic-ai/pull/4958) feat: update Anthropic code execution tool version (open)
+
+**SynapseKit/SynapseKit**
+- [#416](https://github.com/SynapseKit/SynapseKit/pull/416) feat: add Wikipedia document loader (open)
+- [#414](https://github.com/SynapseKit/SynapseKit/pull/414) feat: add arXiv document loader (open)
+- [#413](https://github.com/SynapseKit/SynapseKit/pull/413) Discord: add /docs slash commands (open)
+- [#412](https://github.com/SynapseKit/SynapseKit/pull/412) Discord: post help-wanted issues to #good-first-issues (open)
+- [#411](https://github.com/SynapseKit/SynapseKit/pull/411) Discord: auto-moderation and spam protection (open)
+- [#410](https://github.com/SynapseKit/SynapseKit/pull/410) Discord: self-assign interest roles in #roles (open)
+- [#409](https://github.com/SynapseKit/SynapseKit/pull/409) Discord: welcome bot and onboarding flow (open)
+- [#408](https://github.com/SynapseKit/SynapseKit/pull/408) Discord: auto-assign Contributor role on merged PRs (open)
+- [#404](https://github.com/SynapseKit/SynapseKit/pull/404) docs: add Discord release webhook draft for issue #390 (merged)
+- [#403](https://github.com/SynapseKit/SynapseKit/pull/403) docs: add Discord roles draft for issue #389 (merged)
+- [#402](https://github.com/SynapseKit/SynapseKit/pull/402) docs: add Discord community draft for issue #388 (closed)
+- [#401](https://github.com/SynapseKit/SynapseKit/pull/401) docs: add Discord community draft for issue #388 (closed)
+- [#377](https://github.com/SynapseKit/SynapseKit/pull/377) feat(retrieval): add LanceDB vector store (closed)
+- [#376](https://github.com/SynapseKit/SynapseKit/pull/376) feat(retrieval): add Milvus vector store (closed)
+- [#375](https://github.com/SynapseKit/SynapseKit/pull/375) feat(retrieval): add PGVector (PostgreSQL) vector store (#114) (closed)
+- [#374](https://github.com/SynapseKit/SynapseKit/pull/374) feat(retrieval): add Weaviate vector store backend (#113) (closed)
+- [#372](https://github.com/SynapseKit/SynapseKit/pull/372) feat(llm): add SambaNova LLM provider (#172) (merged)
+- [#364](https://github.com/SynapseKit/SynapseKit/pull/364) fix: resolve Windows test failures for shell timeout and wav mime (#361) (merged)
+- [#363](https://github.com/SynapseKit/SynapseKit/pull/363) feat: add async context manager support to SQLiteCheckpointer (#18) (merged)
+- [#360](https://github.com/SynapseKit/SynapseKit/pull/360) feat(graph): improve Mermaid conditional edge rendering (#21) (merged)
+- [#359](https://github.com/SynapseKit/SynapseKit/pull/359) docs(prompts): add docstring examples to PromptTemplate classes (#16) (merged)
+- [#355](https://github.com/SynapseKit/SynapseKit/pull/355) feat(graph): add graph versioning and checkpoint migration support (#255) (merged)
+- [#354](https://github.com/SynapseKit/SynapseKit/pull/354) feat(llm): add Hugging Face Inference API LLM provider (#174) (merged)
+- [#353](https://github.com/SynapseKit/SynapseKit/pull/353) feat(tools): add GoogleSearchTool via SerpAPI (merged)
+- [#352](https://github.com/SynapseKit/SynapseKit/pull/352) feat(tools): add SQLQueryTool (merged)
+- [#351](https://github.com/SynapseKit/SynapseKit/pull/351) feat(llm): add MemcachedCacheBackend (merged)
+- [#350](https://github.com/SynapseKit/SynapseKit/pull/350) feat(llm): add MemcachedCacheBackend (closed)
+- [#349](https://github.com/SynapseKit/SynapseKit/pull/349) feat(llm): add DynamoDB LLM cache backend (merged)
+- [#348](https://github.com/SynapseKit/SynapseKit/pull/348) feat(tools): add WolframAlphaTool (merged)
+- [#347](https://github.com/SynapseKit/SynapseKit/pull/347) Add BingSearchTool with tests and exports (merged)
+- [#346](https://github.com/SynapseKit/SynapseKit/pull/346) Add missing return type hints to loader helper functions (merged)
+- [#345](https://github.com/SynapseKit/SynapseKit/pull/345) Add missing return type hints to loader helper functions (closed)
+- [#344](https://github.com/SynapseKit/SynapseKit/pull/344) Add usage examples directory (merged)
+
 ---
 
 ## 📊 Telemetry
