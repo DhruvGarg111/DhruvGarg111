@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 <h1 align="center" style="border-bottom: none; font-size: 3.2em; margin-top: 20px; margin-bottom: 0;">Dhruv Garg</h1>
 <p align="center" style="font-size: 1.2em; color: #00D2FF; margin-top: 5px;">
@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <a href="https://dhruvgarg111.github.io/">
+  <a href="https://www.dhruvgarg.tech">
     <img src="./dhruv-tech-ecosystem.svg" alt="Dhruv Garg tech ecosystem" />
   </a>
 </p>
@@ -175,12 +175,12 @@ I actively contribute to the broader developer ecosystem, focusing heavily on AI
 ## 📊 Telemetry
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=DhruvGarg111&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117" alt="github-stats" height="170" />
+  <img src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=dhruvgarg111&theme=date_night" alt="github-stats" height="170" />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=DhruvGarg111&theme=tokyonight&hide_border=true&background=0D1117" alt="streak" height="170" />
 </div>
 
 <div align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=DhruvGarg111&theme=tokyonight&bg_color=0D1117" alt="repos-per-language" height="160" />
+  <img src="http://github-profile-summary-cards.vercel.app/api/cards/stats?username=dhruvgarg111&theme=date_night" alt="streak" height="160" />
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=DhruvGarg111&theme=tokyonight&bg_color=0D1117" alt="most-commit-language" height="160" />
 </div>
 
@@ -194,7 +194,7 @@ I actively contribute to the broader developer ecosystem, focusing heavily on AI
   
   ### 🔗 Connect & Explore
   
-  [**Portfolio**](https://dhruvgarg111.github.io/) &nbsp;&bull;&nbsp; [**Searchlight Live App**](https://the-searchlight-protocol.vercel.app) &nbsp;&bull;&nbsp; [**Email Me**](mailto:dhruvgarg.garg123@gmail.com)
+  [**Website**](https://www.dhruvgarg.tech) &nbsp;&bull;&nbsp; [**Searchlight Live App**](https://the-searchlight-protocol.vercel.app) &nbsp;&bull;&nbsp; [**Email Me**](mailto:dhruvgarg.garg123@gmail.com)
   
   <br>
   <sup>Built by DhruvGarg111</sup>
