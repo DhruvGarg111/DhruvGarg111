@@ -162,13 +162,13 @@ Multi-modal depth completion using RGB + sparse depth + semantic maps. Features 
 
 ## 🌐 Open Source Contributions
 
-I actively contribute to the broader developer ecosystem, focusing heavily on AI tooling, backend infrastructure, and application security:
+I actively contribute to the broader developer ecosystem, with recent merged work spanning agent frameworks, AI infrastructure, developer tooling, and performance-focused ML apps:
 
-*   🤖 **[SynapseKit/SynapseKit](https://github.com/SynapseKit/SynapseKit):** Led additions of multiple LLM providers and vector retrieval backends to broaden model support and storage options. Also built Discord automations for onboarding, moderation, and docs workflows to improve community operations.
-*   🧠 **[pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai):** Upgraded the Anthropic code‑execution tool integration to align with newer API versions. This keeps model tooling stable as providers evolve.
-*   🧪 **[matorral-project/matorral](https://github.com/matorral-project/matorral):** Wrote admin‑focused backend tests, including coverage for `make_superuser`. That hardens privileged flows and reduces regressions in management commands.
-*   🔒 **[trusera/ai-bom](https://pypi.org/project/ai-bom/):** Contributed to AI SBOM generation that audits project workflows. Outputs CycloneDX‑compliant dependency reports for stronger supply‑chain security.
-*   ⚡ **[Nikolaev3Artem/fastapi-silk](https://github.com/Nikolaev3Artem/fastapi-silk):** Implemented SQLite + Alembic migrations to establish durable database setup. Expanded profiler test coverage to improve reliability and maintenance.
+*   🤖 **[SynapseKit/SynapseKit](https://github.com/SynapseKit/SynapseKit):** Shipped **22 merged PRs** covering native observability, VoiceAgent audio pipelines, graph-builder tooling, benchmark suites, CronTrigger scheduling, self-healing cost-aware agents, persistent agent memory, multimodal RAG ingestion, and new cloud/data loaders plus local/self-hosted model integrations.
+*   ⚡ **[DhruvGarg111/PixelQueue](https://github.com/DhruvGarg111/PixelQueue):** Landed **10 merged PRs** focused on annotation-platform performance, including Zustand history optimizations, React memoization boundaries, callback stabilization, faster YOLO export formatting, and database/Celery fixes that remove N+1 insert bottlenecks.
+*   🎨 **[DhruvGarg111/Neural-Style-Transfer](https://github.com/DhruvGarg111/Neural-Style-Transfer):** Merged **5 improvements** that sharpen both UX and inference efficiency, including clearer style-selection flows, in-place tensor operations, reflect-padding convolution simplifications, and modern Pillow compatibility fixes.
+*   🧭 **[DhruvGarg111/py-goog-cli](https://github.com/DhruvGarg111/py-goog-cli):** Added safer and more reliable Google Workspace CLI workflows with a Drive query-injection fix, `--dry-run` support for destructive actions, stronger config/output test coverage, and targeted cleanup.
+*   🔎 **[lancedb/lancedb](https://github.com/lancedb/lancedb):** Updated LanceDB’s Python Gemini embedding provider to the newer `google-genai` SDK, keeping vector-search integrations aligned with Google’s latest API stack.
 
 ---
 
