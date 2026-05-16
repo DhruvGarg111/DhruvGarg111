@@ -162,13 +162,13 @@ Multi-modal depth completion using RGB + sparse depth + semantic maps. Features 
 
 ## 🌐 Open Source Contributions
 
-I actively contribute to the broader developer ecosystem, with recent merged work spanning agent frameworks, AI infrastructure, developer tooling, and performance-focused ML apps:
+I actively contribute to the broader developer ecosystem, with recent merged work spanning agent frameworks, AI infrastructure, developer tooling, and performance-focused ML apps. I am also an active Collaborator at [SynapseKit](https://github.com/SynapseKit/SynapseKit) organization:
 
-*   🤖 **[SynapseKit/SynapseKit](https://github.com/SynapseKit/SynapseKit):** Shipped **22 merged PRs** covering native observability, VoiceAgent audio pipelines, graph-builder tooling, benchmark suites, CronTrigger scheduling, self-healing cost-aware agents, persistent agent memory, multimodal RAG ingestion, and new cloud/data loaders plus local/self-hosted model integrations.
-*   ⚡ **[DhruvGarg111/PixelQueue](https://github.com/DhruvGarg111/PixelQueue):** Landed **10 merged PRs** focused on annotation-platform performance, including Zustand history optimizations, React memoization boundaries, callback stabilization, faster YOLO export formatting, and database/Celery fixes that remove N+1 insert bottlenecks.
-*   🎨 **[DhruvGarg111/Neural-Style-Transfer](https://github.com/DhruvGarg111/Neural-Style-Transfer):** Merged **5 improvements** that sharpen both UX and inference efficiency, including clearer style-selection flows, in-place tensor operations, reflect-padding convolution simplifications, and modern Pillow compatibility fixes.
-*   🧭 **[DhruvGarg111/py-goog-cli](https://github.com/DhruvGarg111/py-goog-cli):** Added safer and more reliable Google Workspace CLI workflows with a Drive query-injection fix, `--dry-run` support for destructive actions, stronger config/output test coverage, and targeted cleanup.
-*   🔎 **[lancedb/lancedb](https://github.com/lancedb/lancedb):** Updated LanceDB’s Python Gemini embedding provider to the newer `google-genai` SDK, keeping vector-search integrations aligned with Google’s latest API stack.
+*   **[SynapseKit/SynapseKit](https://github.com/SynapseKit/SynapseKit):** Shipped 109 PRs covering native observability, VoiceAgent audio pipelines, graph-builder tooling, benchmark suites, CronTrigger scheduling, self-healing cost-aware agents, persistent agent memory, multimodal RAG ingestion, knowledge graph retrievers, Discord automation, cloud/data loaders, and local/self-hosted model integrations across 15+ LLM providers.
+*   **[lancedb/lancedb](https://github.com/lancedb/lancedb):** Updated LanceDB's Python Gemini embedding provider to the newer google-genai SDK and opened a fix for async event loop blocking in AsyncTable.add embeddings.
+*   **[Nikolaev3Artem/fastapi-silk](https://github.com/Nikolaev3Artem/fastapi-silk):**  Merged 5 PRs adding per-endpoint database trigger counters, multi-version compatibility matrix, SQLite+Alembic setup, SQL profiler tests, and comprehensive README documentation.
+*   **[Bessouat40/RAGLight](https://github.com/Bessouat40/RAGLight):** Submitted 3 PRs adding MCP server configuration CLI support (in review) and Docling-based high-fidelity PDF ingestion (open).
+*   **[pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai):** Merged Anthropic code execution tool upgrade
 
 ---
 
