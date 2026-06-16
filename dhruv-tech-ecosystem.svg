@@ -9,13 +9,13 @@
             
             /* Typography Scale */
             .hud-title { font-size: 38px; font-weight: 900; fill: #ffffff; letter-spacing: 4px; }
-            .hud-sub { font-size: 14px; font-weight: 700; fill: #00bcd4; letter-spacing: 6px; text-transform: uppercase; }
+            .hud-sub { font-size: 14px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; }
             .hud-micro { font-size: 10px; fill: #64748b; letter-spacing: 1.5px; }
             
             .panel-title { font-size: 22px; font-weight: 700; fill: #ffffff; letter-spacing: 1px; }
-            .panel-type { font-size: 12px; font-weight: 700; letter-spacing: 4px; }
+            .panel-type { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; }
             .panel-desc { font-size: 14px; font-weight: 500; fill: #94a3b8; }
-            .panel-tech { font-size: 12px; font-weight: 600; fill: #cbd5e1; letter-spacing: 1px; }
+            .panel-tech { font-size: 11px; font-weight: 600; fill: #cbd5e1; letter-spacing: 0.5px; }
             
             /* Core Animations */
             @keyframes rotate-cw { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -26,7 +26,7 @@
             @keyframes scanline { 0% { transform: translateY(0); } 100% { transform: translateY(630px); } }
             @keyframes opacity-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.9; } }
             
-            /* Tech Upgrades & Interactive Animations */
+            /* Tech Upgrades and Interactive Animations */
             @keyframes scroll-up-step {
                 0%, 7.6% { transform: translateY(0); }
                 8.3%, 15.9% { transform: translateY(-14px); }
@@ -47,10 +47,6 @@
                 0%, 100% { transform: scale(1); opacity: 0.02; }
                 50% { transform: scale(1.05); opacity: 0.05; }
             }
-            @keyframes heartbeat-strong {
-                0%, 100% { transform: scale(1); opacity: 0.15; }
-                50% { transform: scale(1.08); opacity: 0.35; }
-            }
             @keyframes flicker-corners { 0%, 100% { opacity: 0.9; } 50% { opacity: 0.35; } }
             
             /* Performance Bar Fluctuations */
@@ -66,48 +62,351 @@
             @keyframes ram-fluct-4 { 0%, 100% { width: 32.8px; } 50% { width: 30px; } }
             @keyframes ram-fluct-5 { 0%, 100% { width: 40.0px; } 50% { width: 36px; } }
             
-            /* Equalizer Visualizer Fluctuations */
+            /* Equalizer Bar Animations */
             @keyframes eq-fluct-1 { 0% { transform: scaleY(0.15); } 100% { transform: scaleY(0.95); } }
             @keyframes eq-fluct-2 { 0% { transform: scaleY(0.35); } 100% { transform: scaleY(0.8); } }
             @keyframes eq-fluct-3 { 0% { transform: scaleY(0.1); } 100% { transform: scaleY(1.0); } }
             @keyframes eq-fluct-4 { 0% { transform: scaleY(0.25); } 100% { transform: scaleY(0.75); } }
-            
-            /* Target-Lock Pointer System */
-            .radar-pointer {
-                transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-                transform-origin: 340px 290px;
+
+            /* ================= Snapping Pointer Cycle Loop (Reduced to 10s) ================= */
+            @keyframes pointer-cycle {
+                0%, 16% { transform: rotate(-34deg); animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+                20%, 36% { transform: rotate(-16.2deg); animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+                40%, 56% { transform: rotate(5.2deg); animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+                60%, 76% { transform: rotate(25.4deg); animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+                80%, 96% { transform: rotate(40.6deg); animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+                100% { transform: rotate(-34deg); }
             }
-            
-            /* Rotational target-snapping based on hovered panel */
-            svg:has(#node-01:hover) .radar-pointer { transform: rotate(-34deg); }
-            svg:has(#node-02:hover) .radar-pointer { transform: rotate(-16.2deg); }
-            svg:has(#node-03:hover) .radar-pointer { transform: rotate(5.2deg); }
-            svg:has(#node-04:hover) .radar-pointer { transform: rotate(25.4deg); }
-            svg:has(#node-05:hover) .radar-pointer { transform: rotate(40.6deg); }
-            
-            /* Pulsing pointer color */
-            svg:has(.system-node:hover) .radar-pointer-glow {
-                animation: heartbeat-strong 1.5s infinite ease-in-out;
+            @keyframes pointer-glow-cycle {
+                0%, 16% { stroke: #00f0ff; fill: #00f0ff; filter: drop-shadow(0 0 5px #00f0ff); }
+                20%, 36% { stroke: #ff2a85; fill: #ff2a85; filter: drop-shadow(0 0 5px #ff2a85); }
+                40%, 56% { stroke: #a855f7; fill: #a855f7; filter: drop-shadow(0 0 5px #a855f7); }
+                60%, 76% { stroke: #00ffaa; fill: #00ffaa; filter: drop-shadow(0 0 5px #00ffaa); }
+                80%, 96% { stroke: #ff5e00; fill: #ff5e00; filter: drop-shadow(0 0 5px #ff5e00); }
+                100% { stroke: #00f0ff; fill: #00f0ff; filter: drop-shadow(0 0 5px #00f0ff); }
             }
 
-            /* Unified System Node Interactive Styles */
-            .system-node { cursor: pointer; transition: opacity 0.35s ease, filter 0.35s ease; }
-            .system-node .panel-group { transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1); }
-            .system-node .panel-bg { transition: fill-opacity 0.35s ease, stroke-width 0.35s ease, stroke-opacity 0.35s ease; }
-            .system-node .conn-path-active { transition: stroke-width 0.35s ease, filter 0.35s ease; }
-            .system-node .conn-dot-start, .system-node .conn-dot-end { transition: r 0.35s cubic-bezier(0.25, 1, 0.5, 1), filter 0.35s ease; }
-            .system-node .conn-trace-parallel { transition: opacity 0.35s ease, stroke-width 0.35s ease; }
-            
-            /* Sibling Fade Effect */
-            svg:has(.system-node:hover) .system-node:not(:hover) { opacity: 0.25; filter: grayscale(40%) blur(0.5px); }
-            
-            /* Node Hover States */
-            .system-node:hover { filter: drop-shadow(0 0 5px currentColor); }
-            .system-node:hover .panel-group { transform: translateX(10px); }
-            .system-node:hover .panel-bg { fill-opacity: 0.98; stroke-opacity: 0.95; stroke-width: 2px; }
-            .system-node:hover .conn-path-active { stroke-width: 3.5px; animation: dash-flow 0.8s linear infinite !important; filter: url(#neon-glow-strong); }
-            .system-node:hover .conn-dot-start, .system-node:hover .conn-dot-end { r: 5.5px; filter: url(#neon-glow); }
-            .system-node:hover .conn-trace-parallel { opacity: 0.45; stroke-width: 1.2px; }
+            .radar-pointer {
+                animation: pointer-cycle 10s infinite;
+                transform-origin: 340px 290px;
+            }
+            .radar-pointer polygon,
+            .radar-pointer path,
+            .radar-pointer line {
+                animation: pointer-glow-cycle 10s infinite ease-in-out;
+                transition: stroke 0.4s ease, fill 0.4s ease, filter 0.4s ease;
+            }
+
+            /* ================= Node Opacity & Glow Loops (Reduced to 10s) ================= */
+            @keyframes node-1-opacity {
+                0%, 16%, 100% { opacity: 1.0; filter: drop-shadow(0 0 5px rgba(0, 240, 255, 0.6)); }
+                20%, 96% { opacity: 0.35; filter: none; }
+            }
+            @keyframes node-1-panel {
+                0%, 16%, 100% { transform: translateX(10px); }
+                20%, 96% { transform: translateX(0px); }
+            }
+
+            @keyframes node-2-opacity {
+                0%, 16% { opacity: 0.35; filter: none; }
+                20%, 36% { opacity: 1.0; filter: drop-shadow(0 0 5px rgba(255, 42, 133, 0.6)); }
+                40%, 100% { opacity: 0.35; filter: none; }
+            }
+            @keyframes node-2-panel {
+                0%, 16% { transform: translateX(0px); }
+                20%, 36% { transform: translateX(10px); }
+                40%, 100% { transform: translateX(0px); }
+            }
+
+            @keyframes node-3-opacity {
+                0%, 36% { opacity: 0.35; filter: none; }
+                40%, 56% { opacity: 1.0; filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.6)); }
+                60%, 100% { opacity: 0.35; filter: none; }
+            }
+            @keyframes node-3-panel {
+                0%, 36% { transform: translateX(0px); }
+                40%, 56% { transform: translateX(10px); }
+                60%, 100% { transform: translateX(0px); }
+            }
+
+            @keyframes node-4-opacity {
+                0%, 56% { opacity: 0.35; filter: none; }
+                60%, 76% { opacity: 1.0; filter: drop-shadow(0 0 5px rgba(0, 255, 170, 0.6)); }
+                80%, 100% { opacity: 0.35; filter: none; }
+            }
+            @keyframes node-4-panel {
+                0%, 56% { transform: translateX(0px); }
+                60%, 76% { transform: translateX(10px); }
+                80%, 100% { transform: translateX(0px); }
+            }
+
+            @keyframes node-5-opacity {
+                0%, 76% { opacity: 0.35; filter: none; }
+                80%, 96% { opacity: 1.0; filter: drop-shadow(0 0 5px rgba(255, 94, 0, 0.6)); }
+                100% { opacity: 0.35; filter: none; }
+            }
+            @keyframes node-5-panel {
+                0%, 76% { transform: translateX(0px); }
+                80%, 96% { transform: translateX(10px); }
+                100% { transform: translateX(0px); }
+            }
+
+            /* Keyframes for Node 1 Active styling */
+            @keyframes node-1-active-color {
+                0%, 16%, 100% { stroke: #00f0ff; }
+                20%, 96% { stroke: #1e293b; }
+            }
+            @keyframes node-1-active-fill {
+                0%, 16%, 100% { fill: #00f0ff; }
+                20%, 96% { fill: #1e293b; }
+            }
+            @keyframes node-1-badge-bg {
+                0%, 16%, 100% { stroke: #00f0ff; fill: rgba(0, 240, 255, 0.08); }
+                20%, 96% { stroke: #1e293b; fill: #070d1a; }
+            }
+            @keyframes node-1-badge-text {
+                0%, 16%, 100% { fill: #00f0ff; }
+                20%, 96% { fill: #64748b; }
+            }
+            @keyframes node-1-sys-bg {
+                0%, 16%, 100% { fill: #00f0ff; }
+                20%, 96% { fill: #1e293b; }
+            }
+            @keyframes node-1-sys-text {
+                0%, 16%, 100% { fill: #02040a; }
+                20%, 96% { fill: #64748b; }
+            }
+
+            /* Keyframes for Node 2 Active styling */
+            @keyframes node-2-active-color {
+                0%, 16% { stroke: #1e293b; }
+                20%, 36% { stroke: #ff2a85; }
+                40%, 100% { stroke: #1e293b; }
+            }
+            @keyframes node-2-active-fill {
+                0%, 16% { fill: #1e293b; }
+                20%, 36% { fill: #ff2a85; }
+                40%, 100% { fill: #1e293b; }
+            }
+            @keyframes node-2-badge-bg {
+                0%, 16% { stroke: #1e293b; fill: #070d1a; }
+                20%, 36% { stroke: #ff2a85; fill: rgba(255, 42, 133, 0.08); }
+                40%, 100% { stroke: #1e293b; fill: #070d1a; }
+            }
+            @keyframes node-2-badge-text {
+                0%, 16% { fill: #64748b; }
+                20%, 36% { fill: #ff2a85; }
+                40%, 100% { fill: #64748b; }
+            }
+            @keyframes node-2-sys-bg {
+                0%, 16% { fill: #1e293b; }
+                20%, 36% { fill: #ff2a85; }
+                40%, 100% { fill: #1e293b; }
+            }
+            @keyframes node-2-sys-text {
+                0%, 16% { fill: #64748b; }
+                20%, 36% { fill: #02040a; }
+                40%, 100% { fill: #64748b; }
+            }
+
+            /* Keyframes for Node 3 Active styling */
+            @keyframes node-3-active-color {
+                0%, 36% { stroke: #1e293b; }
+                40%, 56% { stroke: #a855f7; }
+                60%, 100% { stroke: #1e293b; }
+            }
+            @keyframes node-3-active-fill {
+                0%, 36% { fill: #1e293b; }
+                40%, 56% { fill: #a855f7; }
+                60%, 100% { fill: #1e293b; }
+            }
+            @keyframes node-3-badge-bg {
+                0%, 36% { stroke: #1e293b; fill: #070d1a; }
+                40%, 56% { stroke: #a855f7; fill: rgba(168, 85, 247, 0.08); }
+                60%, 100% { stroke: #1e293b; fill: #070d1a; }
+            }
+            @keyframes node-3-badge-text {
+                0%, 36% { fill: #64748b; }
+                40%, 56% { fill: #a855f7; }
+                60%, 100% { fill: #64748b; }
+            }
+            @keyframes node-3-sys-bg {
+                0%, 36% { fill: #1e293b; }
+                40%, 56% { fill: #a855f7; }
+                60%, 100% { fill: #1e293b; }
+            }
+            @keyframes node-3-sys-text {
+                0%, 36% { fill: #64748b; }
+                40%, 56% { fill: #02040a; }
+                60%, 100% { fill: #64748b; }
+            }
+
+            /* Keyframes for Node 4 Active styling */
+            @keyframes node-4-active-color {
+                0%, 56% { stroke: #1e293b; }
+                60%, 76% { stroke: #00ffaa; }
+                80%, 100% { stroke: #1e293b; }
+            }
+            @keyframes node-4-active-fill {
+                0%, 56% { fill: #1e293b; }
+                60%, 76% { fill: #00ffaa; }
+                80%, 100% { fill: #1e293b; }
+            }
+            @keyframes node-4-badge-bg {
+                0%, 56% { stroke: #1e293b; fill: #070d1a; }
+                60%, 76% { stroke: #00ffaa; fill: rgba(0, 255, 170, 0.08); }
+                80%, 100% { stroke: #1e293b; fill: #070d1a; }
+            }
+            @keyframes node-4-badge-text {
+                0%, 56% { fill: #64748b; }
+                60%, 76% { fill: #00ffaa; }
+                80%, 100% { fill: #64748b; }
+            }
+            @keyframes node-4-sys-bg {
+                0%, 56% { fill: #1e293b; }
+                60%, 76% { fill: #00ffaa; }
+                80%, 100% { fill: #1e293b; }
+            }
+            @keyframes node-4-sys-text {
+                0%, 56% { fill: #64748b; }
+                60%, 76% { fill: #02040a; }
+                80%, 100% { fill: #64748b; }
+            }
+
+            /* Keyframes for Node 5 Active styling */
+            @keyframes node-5-active-color {
+                0%, 76% { stroke: #1e293b; }
+                80%, 96% { stroke: #ff5e00; }
+                100% { stroke: #1e293b; }
+            }
+            @keyframes node-5-active-fill {
+                0%, 76% { fill: #1e293b; }
+                80%, 96% { fill: #ff5e00; }
+                100% { fill: #1e293b; }
+            }
+            @keyframes node-5-badge-bg {
+                0%, 76% { stroke: #1e293b; fill: #070d1a; }
+                80%, 96% { stroke: #ff5e00; fill: rgba(255, 94, 0, 0.08); }
+                100% { stroke: #1e293b; fill: #070d1a; }
+            }
+            @keyframes node-5-badge-text {
+                0%, 76% { fill: #64748b; }
+                80%, 96% { fill: #ff5e00; }
+                100% { fill: #64748b; }
+            }
+            @keyframes node-5-sys-bg {
+                0%, 76% { fill: #1e293b; }
+                80%, 96% { fill: #ff5e00; }
+                100% { fill: #1e293b; }
+            }
+            @keyframes node-5-sys-text {
+                0%, 76% { fill: #64748b; }
+                80%, 96% { fill: #02040a; }
+                100% { fill: #64748b; }
+            }
+
+            /* Central Card animations */
+            @keyframes center-card-glow {
+                0%, 16% { stroke: #00f0ff; }
+                20%, 36% { stroke: #ff2a85; }
+                40%, 56% { stroke: #a855f7; }
+                60%, 76% { stroke: #00ffaa; }
+                80%, 96% { stroke: #ff5e00; }
+                100% { stroke: #00f0ff; }
+            }
+            @keyframes center-card-text {
+                0%, 16% { fill: #00f0ff; }
+                20%, 36% { fill: #ff2a85; }
+                40%, 56% { fill: #a855f7; }
+                60%, 76% { fill: #00ffaa; }
+                80%, 96% { fill: #ff5e00; }
+                100% { fill: #00f0ff; }
+            }
+            @keyframes ambient-glow-left-anim {
+                0%, 16% { fill: #00f0ff; }
+                20%, 36% { fill: #ff2a85; }
+                40%, 56% { fill: #a855f7; }
+                60%, 76% { fill: #00ffaa; }
+                80%, 96% { fill: #ff5e00; }
+                100% { fill: #00f0ff; }
+            }
+            @keyframes ambient-glow-right-anim {
+                0%, 16% { fill: #00f0ff; }
+                20%, 36% { fill: #ff2a85; }
+                40%, 56% { fill: #a855f7; }
+                60%, 76% { fill: #00ffaa; }
+                80%, 96% { fill: #ff5e00; }
+                100% { fill: #00f0ff; }
+            }
+
+            .ambient-glow-left { animation: ambient-glow-left-anim 10s infinite ease-in-out; }
+            .ambient-glow-right { animation: ambient-glow-right-anim 10s infinite ease-in-out; }
+            .center-card-path { animation: center-card-glow 10s infinite; }
+            .hud-sub { animation: center-card-text 10s infinite; }
+
+            /* Structure Definitions */
+            .system-node { transition: opacity 0.4s ease, filter 0.4s ease; }
+            .system-node .panel-group { transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+            .system-node .panel-bg { fill-opacity: 0.95; stroke-opacity: 0.9; stroke-width: 1.5px; }
+            .system-node .conn-path-active { stroke-width: 2.5px; }
+            .system-node .conn-dot-start, .system-node .conn-dot-end { r: 3.5px; }
+            .system-node .conn-trace-parallel { opacity: 0.25; stroke-width: 0.8px; }
+
+            /* Attach Showcase Animations (10s Loop) */
+            #node-01 { animation: node-1-opacity 10s infinite; }
+            #node-01 .panel-group { animation: node-1-panel 10s infinite; }
+            #node-01 .panel-bg { animation: node-1-active-color 10s infinite; }
+            #node-01 .conn-path-active { animation: node-1-active-color 10s infinite; }
+            #node-01 .conn-trace-parallel { animation: node-1-active-color 10s infinite; }
+            #node-01 .conn-dot-start, #node-01 .conn-dot-end { animation: node-1-active-fill 10s infinite; }
+            #node-01 .sys-badge-bg { animation: node-1-sys-bg 10s infinite; }
+            #node-01 .sys-badge-text { animation: node-1-sys-text 10s infinite; }
+            #node-01 .badge-bg { animation: node-1-badge-bg 10s infinite; }
+            #node-01 .badge-text { animation: node-1-badge-text 10s infinite; }
+
+            #node-02 { animation: node-2-opacity 10s infinite; }
+            #node-02 .panel-group { animation: node-2-panel 10s infinite; }
+            #node-02 .panel-bg { animation: node-2-active-color 10s infinite; }
+            #node-02 .conn-path-active { animation: node-2-active-color 10s infinite; }
+            #node-02 .conn-trace-parallel { animation: node-2-active-color 10s infinite; }
+            #node-02 .conn-dot-start, #node-02 .conn-dot-end { animation: node-2-active-fill 10s infinite; }
+            #node-02 .sys-badge-bg { animation: node-2-sys-bg 10s infinite; }
+            #node-02 .sys-badge-text { animation: node-2-sys-text 10s infinite; }
+            #node-02 .badge-bg { animation: node-2-badge-bg 10s infinite; }
+            #node-02 .badge-text { animation: node-2-badge-text 10s infinite; }
+
+            #node-03 { animation: node-3-opacity 10s infinite; }
+            #node-03 .panel-group { animation: node-3-panel 10s infinite; }
+            #node-03 .panel-bg { animation: node-3-active-color 10s infinite; }
+            #node-03 .conn-path-active { animation: node-3-active-color 10s infinite; }
+            #node-03 .conn-trace-parallel { animation: node-3-active-color 10s infinite; }
+            #node-03 .conn-dot-start, #node-03 .conn-dot-end { animation: node-3-active-fill 10s infinite; }
+            #node-03 .sys-badge-bg { animation: node-3-sys-bg 10s infinite; }
+            #node-03 .sys-badge-text { animation: node-3-sys-text 10s infinite; }
+            #node-03 .badge-bg { animation: node-3-badge-bg 10s infinite; }
+            #node-03 .badge-text { animation: node-3-badge-text 10s infinite; }
+
+            #node-04 { animation: node-4-opacity 10s infinite; }
+            #node-04 .panel-group { animation: node-4-panel 10s infinite; }
+            #node-04 .panel-bg { animation: node-4-active-color 10s infinite; }
+            #node-04 .conn-path-active { animation: node-4-active-color 10s infinite; }
+            #node-04 .conn-trace-parallel { animation: node-4-active-color 10s infinite; }
+            #node-04 .conn-dot-start, #node-04 .conn-dot-end { animation: node-4-active-fill 10s infinite; }
+            #node-04 .sys-badge-bg { animation: node-4-sys-bg 10s infinite; }
+            #node-04 .sys-badge-text { animation: node-4-sys-text 10s infinite; }
+            #node-04 .badge-bg { animation: node-4-badge-bg 10s infinite; }
+            #node-04 .badge-text { animation: node-4-badge-text 10s infinite; }
+
+            #node-05 { animation: node-5-opacity 10s infinite; }
+            #node-05 .panel-group { animation: node-5-panel 10s infinite; }
+            #node-05 .panel-bg { animation: node-5-active-color 10s infinite; }
+            #node-05 .conn-path-active { animation: node-5-active-color 10s infinite; }
+            #node-05 .conn-trace-parallel { animation: node-5-active-color 10s infinite; }
+            #node-05 .conn-dot-start, #node-05 .conn-dot-end { animation: node-5-active-fill 10s infinite; }
+            #node-05 .sys-badge-bg { animation: node-5-sys-bg 10s infinite; }
+            #node-05 .sys-badge-text { animation: node-5-sys-text 10s infinite; }
+            #node-05 .badge-bg { animation: node-5-badge-bg 10s infinite; }
+            #node-05 .badge-text { animation: node-5-badge-text 10s infinite; }
             
             .corner-accent { animation: flicker-corners 4s infinite alternate; }
             
@@ -169,14 +468,14 @@
         </pattern>
 
         <linearGradient id="core-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#00bcd4" stop-opacity="0.08" />
-            <stop offset="100%" stop-color="#2196f3" stop-opacity="0.0" />
+            <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.12" />
+            <stop offset="100%" stop-color="#a855f7" stop-opacity="0.0" />
         </linearGradient>
 
         <linearGradient id="card-glow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#00bcd4"/>
-            <stop offset="50%" stop-color="#9c27b0"/>
-            <stop offset="100%" stop-color="#e91e63"/>
+            <stop offset="0%" stop-color="#00f0ff"/>
+            <stop offset="50%" stop-color="#a855f7"/>
+            <stop offset="100%" stop-color="#ff2a85"/>
         </linearGradient>
         
         <!-- Glassmorphic panel background gradient -->
@@ -192,11 +491,11 @@
     <rect width="1200" height="630" fill="url(#hex-bg)"/>
     
     <!-- Ambient Radial Glows -->
-    <circle cx="350" cy="315" r="300" fill="#00bcd4" opacity="0.02" />
-    <circle cx="900" cy="315" r="400" fill="#e91e63" opacity="0.015" />
+    <circle class="ambient-glow-left" cx="350" cy="315" r="300" fill="#00f0ff" opacity="0.02" />
+    <circle class="ambient-glow-right" cx="900" cy="315" r="400" fill="#ff2a85" opacity="0.015" />
     
     <!-- Scanline overlay -->
-    <rect width="1200" height="4" fill="#00bcd4" opacity="0.05" style="animation: scanline 4s linear infinite;" />
+    <rect width="1200" height="4" fill="#00f0ff" opacity="0.05" style="animation: scanline 4s linear infinite;" />
     
     <!-- Outer Cyber HUD Frame -->
     <rect x="20" y="20" width="1160" height="590" fill="none" stroke="#334155" stroke-width="1.5"/>
@@ -209,21 +508,21 @@
     <path d="M 1160 580 L 1160 600 M 1150 590 L 1170 590" fill="none" stroke="#334155" stroke-width="1"/>
     
     <!-- Corner Tech Accents -->
-    <path class="corner-accent" d="M 20 50 L 20 20 L 50 20" fill="none" stroke="#00bcd4" stroke-width="2.5" opacity="0.9"/>
-    <circle class="corner-accent" cx="30.0" cy="30.0" r="2" fill="#e91e63" opacity="1.0"/>
+    <path class="corner-accent" d="M 20 50 L 20 20 L 50 20" fill="none" stroke="#00f0ff" stroke-width="2.5" opacity="0.9"/>
+    <circle class="corner-accent" cx="30.0" cy="30.0" r="2" fill="#ff2a85" opacity="1.0"/>
     
-    <path class="corner-accent" d="M 20 580 L 20 610 L 50 610" fill="none" stroke="#00bcd4" stroke-width="2.5" opacity="0.9"/>
-    <circle class="corner-accent" cx="30.0" cy="600.0" r="2" fill="#e91e63" opacity="1.0"/>
+    <path class="corner-accent" d="M 20 580 L 20 610 L 50 610" fill="none" stroke="#00f0ff" stroke-width="2.5" opacity="0.9"/>
+    <circle class="corner-accent" cx="30.0" cy="600.0" r="2" fill="#ff2a85" opacity="1.0"/>
     
-    <path class="corner-accent" d="M 1180 50 L 1180 20 L 1150 20" fill="none" stroke="#00bcd4" stroke-width="2.5" opacity="0.9"/>
-    <circle class="corner-accent" cx="1170.0" cy="30.0" r="2" fill="#e91e63" opacity="1.0"/>
+    <path class="corner-accent" d="M 1180 50 L 1180 20 L 1150 20" fill="none" stroke="#00f0ff" stroke-width="2.5" opacity="0.9"/>
+    <circle class="corner-accent" cx="1170.0" cy="30.0" r="2" fill="#ff2a85" opacity="1.0"/>
     
-    <path class="corner-accent" d="M 1180 580 L 1180 610 L 1150 610" fill="none" stroke="#00bcd4" stroke-width="2.5" opacity="0.9"/>
-    <circle class="corner-accent" cx="1170.0" cy="600.0" r="2" fill="#e91e63" opacity="1.0"/>
+    <path class="corner-accent" d="M 1180 580 L 1180 610 L 1150 610" fill="none" stroke="#00f0ff" stroke-width="2.5" opacity="0.9"/>
+    <circle class="corner-accent" cx="1170.0" cy="600.0" r="2" fill="#ff2a85" opacity="1.0"/>
 
     <!-- HUD Header Status Stream -->
-    <text x="60" y="38" class="mono hud-micro" fill="#00bcd4">SYSTEM.CORE_V7.ACTIVE // MEMORY: 64TB // LATENCY: 0.012MS</text>
-    <text x="1140" y="38" class="mono hud-micro" text-anchor="end" fill="#e91e63">UPLINK_SECURE // ENCRYPTION: QUANTUM-256</text>
+    <text x="60" y="38" class="mono hud-micro" fill="#00f0ff">SYSTEM.CORE_V7.ACTIVE // MEMORY: 64TB // LATENCY: 0.012MS</text>
+    <text x="1140" y="38" class="mono hud-micro" text-anchor="end" fill="#ff2a85">UPLINK_SECURE // ENCRYPTION: QUANTUM-256</text>
 
     <!-- ================= CENTRAL CORE SYSTEM ================= -->
     <circle cx="340" cy="290" r="220" fill="url(#core-grad)" stroke="#1e293b" stroke-width="1"/>
@@ -232,58 +531,58 @@
     <circle cx="340" cy="290" r="270" fill="none" stroke="#334155" stroke-width="0.8" opacity="0.4" style="animation: opacity-pulse 4s infinite alternate;"/>
     
     <!-- Active Radar Sweeper Lines -->
-    <line x1="340" y1="290" x2="340" y2="70" stroke="#00bcd4" stroke-width="1.5" opacity="0.25" style="transform-origin: 340px 290px; animation: rotate-cw 10s linear infinite; filter: url(#neon-glow);"/>
-    <line x1="340" y1="290" x2="340" y2="70" stroke="#e91e63" stroke-width="1" opacity="0.15" style="transform-origin: 340px 290px; animation: rotate-ccw 16s linear infinite; filter: url(#neon-glow);"/>
+    <line x1="340" y1="290" x2="340" y2="70" stroke="#00f0ff" stroke-width="1.5" opacity="0.25" style="transform-origin: 340px 290px; animation: rotate-cw 10s linear infinite; filter: url(#neon-glow);"/>
+    <line x1="340" y1="290" x2="340" y2="70" stroke="#ff2a85" stroke-width="1" opacity="0.15" style="transform-origin: 340px 290px; animation: rotate-ccw 16s linear infinite; filter: url(#neon-glow);"/>
 
     <!-- Concentric Ring 1 (CW Rotation + Particles) -->
     <g style="transform-origin: 340px 290px; animation: rotate-cw 60s linear infinite;">
         <circle cx="340" cy="290" r="250" fill="none" stroke="#334155" stroke-width="2" stroke-dasharray="4 8"/>
         <circle cx="340" cy="290" r="240" fill="none" stroke="#0f172a" stroke-width="10" stroke-dasharray="100 20 10 20"/>
         <!-- Orbiting Cyan Data Particles -->
-        <circle cx="590" cy="290" r="3" fill="#00bcd4" filter="url(#neon-glow)"/>
-        <circle cx="90" cy="290" r="3" fill="#00bcd4" filter="url(#neon-glow)"/>
+        <circle cx="590" cy="290" r="3" fill="#00f0ff" filter="url(#neon-glow)"/>
+        <circle cx="90" cy="290" r="3" fill="#00f0ff" filter="url(#neon-glow)"/>
     </g>
 
     <!-- Concentric Ring 2 (CCW Rotation + Particles) -->
     <g style="transform-origin: 340px 290px; animation: rotate-ccw 45s linear infinite;">
-        <circle cx="340" cy="290" r="215" fill="none" stroke="#00bcd4" stroke-width="1.5" stroke-dasharray="2 6" opacity="0.6"/>
-        <path d="M 115 290 A 225 225 0 0 1 565 290" fill="none" stroke="#e91e63" stroke-width="2.5" stroke-dasharray="10 40 30 40" opacity="0.7"/>
+        <circle cx="340" cy="290" r="215" fill="none" stroke="#00f0ff" stroke-width="1.5" stroke-dasharray="2 6" opacity="0.6"/>
+        <path d="M 115 290 A 225 225 0 0 1 565 290" fill="none" stroke="#ff2a85" stroke-width="2.5" stroke-dasharray="10 40 30 40" opacity="0.7"/>
         <!-- Orbiting Pink Data Particles -->
-        <circle cx="555" cy="290" r="2.5" fill="#e91e63" filter="url(#neon-glow)"/>
-        <circle cx="125" cy="290" r="2.5" fill="#e91e63" filter="url(#neon-glow)"/>
+        <circle cx="555" cy="290" r="2.5" fill="#ff2a85" filter="url(#neon-glow)"/>
+        <circle cx="125" cy="290" r="2.5" fill="#ff2a85" filter="url(#neon-glow)"/>
     </g>
 
     <!-- Concentric Ring 3 (Tick Marks - EXACT COPY) -->
     <g style="transform-origin: 340px 290px; animation: rotate-cw 120s linear infinite;"><line x1="525.0" y1="290.0" x2="533.0" y2="290.0" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="524.7464639295962" y1="299.6821519049446" x2="528.7409820686145" y2="299.89149572991636" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="523.9865506431306" y1="309.3377657045159" x2="527.9646382246036" y2="309.7558795575865" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="522.7223430101005" y1="318.9403760324427" x2="526.673096372481" y2="319.56611389260365" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="520.957306135754" y1="328.46366280128547" x2="524.8698965386893" y2="329.29530956455653" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="518.6962778634777" y1="337.88152334396636" x2="522.559981168634" y2="338.9167995243764" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="515.9454555146034" y1="347.16814395936524" x2="519.749681579784" y2="348.40421193686507" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="512.7123789019823" y1="356.2980706658806" x2="516.4467006079711" y2="357.73154246406176" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="509.0059096638812" y1="365.246278969023" x2="512.6600914944515" y2="366.87322554132624" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="504.8362069748481" y1="373.9882424518162" x2="508.4002330716015" y2="375.80420445077436" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="500.2146997001212" y1="382.5" x2="507.14290293039664" y2="386.5" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="495.15405506990345" y1="390.75822147778" x2="498.5087373416851" y2="392.9367776178401" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="489.66814395936524" y1="398.74027167410753" x2="492.90421193686507" y2="401.09141268327744" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="483.7720028695396" y1="406.4242723442199" x2="486.8805867153675" y2="408.9415539084193" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="477.48179271331793" y1="413.7891621763888" x2="480.4543720152275" y2="416.4656846018242" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="470.8147545195113" y1="420.8147545195113" x2="473.6431816442575" y2="423.6431816442575" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="463.7891621763888" y1="427.48179271331793" x2="466.4656846018242" y2="430.4543720152275" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="456.42427234421996" y1="433.7720028695396" x2="458.9415539084193" y2="436.8805867153675" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="448.74027167410753" y1="439.66814395936524" x2="451.09141268327744" y2="442.90421193686507" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="440.75822147778" y1="445.15405506990345" x2="442.9367776178401" y2="448.5087373416851" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="432.5" y1="450.2146997001212" x2="436.5" y2="457.14290293039664" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="423.9882424518162" y1="454.83620697484804" x2="425.80420445077436" y2="458.4002330716015" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="415.246278969023" y1="459.0059096638812" x2="416.87322554132624" y2="462.66009149445154" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="406.2980706658806" y1="462.71237890198233" x2="407.73154246406176" y2="466.44670060797114" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="397.1681439593653" y1="465.9454555146034" x2="398.40421193686507" y2="469.749681579784" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="387.88152334396636" y1="468.69627786347763" x2="388.9167995243764" y2="472.55998116863395" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="378.4636628012855" y1="470.95730613575404" x2="379.29530956455653" y2="474.86989653868926" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="368.9403760324427" y1="472.7223430101005" x2="369.56611389260365" y2="476.67309637248104" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="359.3377657045159" y1="473.98655064313056" x2="359.7558795575865" y2="477.9646382246036" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="349.68215190494465" y1="474.7464639295962" x2="349.8914957299164" y2="478.74098206861447" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="340.0" y1="475.0" x2="340.0" y2="483.0" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="330.3178480950554" y1="474.7464639295962" x2="330.1085042700836" y2="478.74098206861447" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="320.6622342954841" y1="473.98655064313056" x2="320.2441204424135" y2="477.9646382246036" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="311.0596239675573" y1="472.7223430101005" x2="310.43388610739635" y2="476.67309637248104" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="301.53633719871453" y1="470.95730613575404" x2="300.70469043544347" y2="474.86989653868926" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="292.11847665603364" y1="468.69627786347763" x2="291.0832004756236" y2="472.55998116863395" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="282.83185604063476" y1="465.9454555146034" x2="281.59578806313493" y2="469.749681579784" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="273.7019293341194" y1="462.71237890198233" x2="272.26845753593824" y2="466.44670060797114" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="264.753721030977" y1="459.0059096638812" x2="263.12677445867376" y2="462.66009149445154" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="256.0117575481838" y1="454.8362069748481" x2="254.19579554922566" y2="458.4002330716015" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="247.50000000000006" y1="450.2146997001212" x2="243.50000000000006" y2="457.14290293039664" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="239.24177852222" y1="445.15405506990345" x2="237.0632223821599" y2="448.5087373416851" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="231.2597283258925" y1="439.66814395936524" x2="228.90858731672262" y2="442.90421193686507" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="223.5757276557801" y1="433.7720028695396" x2="221.05844609158075" y2="436.8805867153675" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="216.21083782361123" y1="427.48179271331793" x2="213.5343153981758" y2="430.4543720152275" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="209.18524548048873" y1="420.8147545195113" x2="206.35681835574252" y2="423.6431816442575" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="202.5182072866821" y1="413.7891621763888" x2="199.54562798477252" y2="416.46568460182425" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="196.22799713046038" y1="406.4242723442199" x2="193.1194132846325" y2="408.9415539084193" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="190.33185604063473" y1="398.74027167410753" x2="187.09578806313496" y2="401.09141268327744" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="184.84594493009658" y1="390.75822147778007" x2="181.49126265831487" y2="392.93677761784016" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="179.78530029987883" y1="382.5" x2="172.85709706960333" y2="386.5" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="175.16379302515196" y1="373.9882424518162" x2="171.59976692839848" y2="375.80420445077436" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="170.99409033611886" y1="365.2462789690231" x2="167.33990850554846" y2="366.8732255413263" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="167.28762109801767" y1="356.2980706658806" x2="163.55329939202886" y2="357.73154246406176" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="164.0545444853966" y1="347.1681439593653" x2="160.250318420216" y2="348.40421193686507" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="161.3037221365224" y1="337.88152334396636" x2="157.4400188313661" y2="338.9167995243765" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="159.04269386424596" y1="328.46366280128547" x2="155.13010346131074" y2="329.29530956455653" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="157.27765698989953" y1="318.9403760324427" x2="153.326903627519" y2="319.56611389260365" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="156.01344935686944" y1="309.33776570451596" x2="152.03536177539635" y2="309.7558795575866" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="155.25353607040384" y1="299.6821519049446" x2="151.25901793138556" y2="299.89149572991636" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="155.0" y1="290.0" x2="147.0" y2="290.0" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="155.25353607040384" y1="280.31784809505547" x2="151.25901793138556" y2="280.10850427008364" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="156.01344935686944" y1="270.6622342954841" x2="152.03536177539635" y2="270.2441204424135" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="157.27765698989953" y1="261.0596239675573" x2="153.32690362751896" y2="260.4338861073964" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="159.04269386424596" y1="251.53633719871448" x2="155.13010346131074" y2="250.70469043544347" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="161.30372213652237" y1="242.11847665603364" x2="157.44001883136607" y2="241.08320047562358" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="164.05454448539658" y1="232.83185604063476" x2="160.25031842021596" y2="231.59578806313496" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="167.28762109801767" y1="223.70192933411943" x2="163.55329939202886" y2="222.2684575359382" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="170.99409033611883" y1="214.75372103097698" x2="167.33990850554844" y2="213.12677445867376" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="175.16379302515193" y1="206.01175754818388" x2="171.59976692839848" y2="204.1957955492257" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="179.78530029987886" y1="197.5" x2="172.85709706960336" y2="193.49999999999997" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="184.84594493009655" y1="189.24177852222" x2="181.49126265831487" y2="187.0632223821599" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="190.33185604063473" y1="181.2597283258925" x2="187.09578806313493" y2="178.90858731672262" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="196.2279971304604" y1="173.57572765578004" x2="193.11941328463251" y2="171.0584460915807" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="202.51820728668207" y1="166.21083782361123" x2="199.5456279847725" y2="163.5343153981758" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="209.18524548048867" y1="159.18524548048873" x2="206.3568183557425" y2="156.35681835574252" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="216.21083782361126" y1="152.51820728668204" x2="213.5343153981758" y2="149.54562798477247" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="223.57572765577999" y1="146.22799713046044" x2="221.05844609158066" y2="143.11941328463257" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="231.25972832589247" y1="140.33185604063473" x2="228.90858731672256" y2="137.09578806313496" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="239.24177852222002" y1="134.84594493009652" x2="237.0632223821599" y2="131.49126265831484" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="247.49999999999991" y1="129.78530029987888" x2="243.49999999999991" y2="122.85709706960338" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="256.0117575481838" y1="125.16379302515196" x2="254.19579554922564" y2="121.59976692839848" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="264.753721030977" y1="120.99409033611883" x2="263.12677445867376" y2="117.33990850554841" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="273.70192933411937" y1="117.2876210980177" x2="272.2684575359382" y2="113.55329939202889" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="282.8318560406347" y1="114.0545444853966" x2="281.59578806313493" y2="110.25031842021599" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="292.1184766560337" y1="111.30372213652237" x2="291.0832004756236" y2="107.44001883136607" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="301.5363371987144" y1="109.04269386424596" x2="300.7046904354434" y2="105.13010346131074" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="311.0596239675573" y1="107.27765698989953" x2="310.43388610739635" y2="103.32690362751899" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="320.66223429548415" y1="106.01344935686942" x2="320.24412044241353" y2="102.03536177539632" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="330.3178480950553" y1="105.25353607040384" x2="330.10850427008353" y2="101.25901793138556" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="339.99999999999994" y1="105.0" x2="339.99999999999994" y2="97.0" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="349.68215190494465" y1="105.25353607040384" x2="349.8914957299164" y2="101.25901793138556" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="359.3377657045158" y1="106.01344935686942" x2="359.7558795575864" y2="102.03536177539632" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="368.94037603244266" y1="107.27765698989953" x2="369.5661138926036" y2="103.32690362751896" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="378.4636628012855" y1="109.04269386424596" x2="379.29530956455653" y2="105.13010346131074" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="387.88152334396625" y1="111.30372213652234" x2="388.91679952437636" y2="107.44001883136607" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="397.16814395936524" y1="114.05454448539658" x2="398.404211936865" y2="110.25031842021596" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="406.2980706658806" y1="117.28762109801767" x2="407.73154246406176" y2="113.55329939202886" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="415.24627896902297" y1="120.9940903361188" x2="416.8732255413262" y2="117.33990850554841" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="423.9882424518161" y1="125.16379302515193" x2="425.8042044507743" y2="121.59976692839845" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="432.5" y1="129.78530029987886" x2="436.5" y2="122.85709706960336" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="440.7582214777799" y1="134.84594493009652" x2="442.93677761784005" y2="131.4912626583148" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="448.7402716741075" y1="140.3318560406347" x2="451.0914126832774" y2="137.0957880631349" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="456.42427234421996" y1="146.2279971304604" x2="458.9415539084193" y2="143.11941328463251" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="463.7891621763887" y1="152.518207286682" x2="466.46568460182414" y2="149.54562798477244" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="470.81475451951127" y1="159.18524548048867" x2="473.6431816442574" y2="156.3568183557425" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="477.48179271331793" y1="166.21083782361126" x2="480.4543720152275" y2="163.5343153981758" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="483.77200286953956" y1="173.57572765577999" x2="486.88058671536743" y2="171.05844609158066" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="489.66814395936524" y1="181.2597283258924" x2="492.90421193686507" y2="178.90858731672253" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="495.15405506990345" y1="189.24177852222002" x2="498.5087373416851" y2="187.0632223821599" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="500.21469970012106" y1="197.49999999999991" x2="507.14290293039664" y2="193.49999999999991" stroke="#00bcd4" stroke-width="2.5" opacity="0.8"/><line x1="504.83620697484804" y1="206.01175754818382" x2="508.4002330716015" y2="204.19579554922564" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="509.0059096638812" y1="214.75372103097698" x2="512.6600914944515" y2="213.12677445867376" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="512.7123789019822" y1="223.70192933411937" x2="516.446700607971" y2="222.26845753593815" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="515.9454555146034" y1="232.83185604063468" x2="519.749681579784" y2="231.59578806313488" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="518.6962778634777" y1="242.11847665603366" x2="522.559981168634" y2="241.08320047562358" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="520.957306135754" y1="251.53633719871442" x2="524.8698965386893" y2="250.70469043544338" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="522.7223430101005" y1="261.05962396755723" x2="526.673096372481" y2="260.43388610739635" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="523.9865506431306" y1="270.6622342954841" x2="527.9646382246036" y2="270.24412044241353" stroke="#475569" stroke-width="1.5" opacity="0.8"/><line x1="524.7464639295962" y1="280.3178480950553" x2="528.7409820686145" y2="280.10850427008353" stroke="#475569" stroke-width="1.5" opacity="0.8"/></g>
 
-    <!-- Target-Lock Selector pointer (Aligned dynamically via CSS has()) -->
+    <!-- Target-Lock Selector Pointer (Cycle-animated) -->
     <g class="radar-pointer">
         <!-- Glowing outer lock bracket -->
-        <path class="radar-pointer-glow" d="M 572 265 A 235 235 0 0 1 572 315" fill="none" stroke="#00bcd4" stroke-width="2.5" opacity="0.2" filter="url(#neon-glow-strong)"/>
-        <path d="M 572 265 A 235 235 0 0 1 572 315" fill="none" stroke="#00bcd4" stroke-width="1.8" opacity="0.8"/>
+        <path class="radar-pointer-glow" d="M 572 265 A 235 235 0 0 1 572 315" fill="none" stroke="#00f0ff" stroke-width="2.5" opacity="0.2" filter="url(#neon-glow-strong)"/>
+        <path d="M 572 265 A 235 235 0 0 1 572 315" fill="none" stroke="#00f0ff" stroke-width="1.8" opacity="0.8"/>
         <!-- Outer target tick marks -->
-        <line x1="572" y1="265" x2="578" y2="262" stroke="#00bcd4" stroke-width="1.5" opacity="0.8"/>
-        <line x1="572" y1="315" x2="578" y2="318" stroke="#00bcd4" stroke-width="1.5" opacity="0.8"/>
+        <line x1="572" y1="265" x2="578" y2="262" stroke="#00f0ff" stroke-width="1.5" opacity="0.8"/>
+        <line x1="572" y1="315" x2="578" y2="318" stroke="#00f0ff" stroke-width="1.5" opacity="0.8"/>
         <!-- Connection lock line and center needle pointer -->
-        <line x1="340" y1="290" x2="560" y2="290" stroke="#00bcd4" stroke-width="1.2" stroke-dasharray="3 9" opacity="0.45"/>
-        <polygon points="560,286 570,290 560,294" fill="#00bcd4" filter="url(#neon-glow)"/>
+        <line x1="340" y1="290" x2="560" y2="290" stroke="#00f0ff" stroke-width="1.2" stroke-dasharray="3 9" opacity="0.45"/>
+        <polygon points="560,286 570,290 560,294" fill="#00f0ff" filter="url(#neon-glow)"/>
     </g>
 
     <!-- Core Crosshairs & Flicker Overlay -->
     <g style="animation: flicker 4s infinite;">
-        <circle cx="340" cy="290" r="140" fill="#00bcd4" fill-opacity="0.04" stroke="#00bcd4" stroke-width="1" stroke-opacity="0.4"/>
-        <circle cx="340" cy="290" r="95" fill="none" stroke="#00bcd4" stroke-width="1.5" stroke-dasharray="1 4" opacity="0.7"/>
-        <line x1="190" y1="290" x2="490" y2="290" stroke="#00bcd4" stroke-width="1.5" stroke-opacity="0.6"/>
-        <line x1="340" y1="140" x2="340" y2="440" stroke="#00bcd4" stroke-width="1.5" stroke-opacity="0.6"/>
+        <circle cx="340" cy="290" r="140" fill="#00f0ff" fill-opacity="0.04" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.4"/>
+        <circle cx="340" cy="290" r="95" fill="none" stroke="#00f0ff" stroke-width="1.5" stroke-dasharray="1 4" opacity="0.7"/>
+        <line x1="190" y1="290" x2="490" y2="290" stroke="#00f0ff" stroke-width="1.5" stroke-opacity="0.6"/>
+        <line x1="340" y1="140" x2="340" y2="440" stroke="#00f0ff" stroke-width="1.5" stroke-opacity="0.6"/>
     </g>
 
     <!-- Central Name Profile Card -->
     <g transform="translate(340, 290)">
         <!-- Breathing Heartbeat Core Glow -->
-        <circle cx="0" cy="0" r="130" fill="#00bcd4" opacity="0.03" style="animation: heartbeat 3s infinite ease-in-out;"/>
+        <circle cx="0" cy="0" r="130" fill="#00f0ff" opacity="0.03" style="animation: heartbeat 3s infinite ease-in-out;"/>
         
         <!-- Chamfered tech background -->
-        <path d="M -160 -25 L -150 -35 L 150 -35 L 160 -25 L 160 25 L 150 35 L -150 35 L -160 25 Z" fill="#060c18" fill-opacity="0.95" stroke="url(#card-glow-grad)" stroke-width="1.5" filter="url(#neon-glow)"/>
+        <path class="center-card-path" d="M -160 -25 L -150 -35 L 150 -35 L 160 -25 L 160 25 L 150 35 L -150 35 L -160 25 Z" fill="#060c18" fill-opacity="0.95" stroke="url(#card-glow-grad)" stroke-width="1.5" filter="url(#neon-glow)"/>
         
         <!-- Core brackets -->
         <path d="M -157 -15 L -157 -32 L -140 -32" fill="none" stroke="#f8fafc" stroke-width="1.2" opacity="0.75"/>
@@ -292,15 +591,15 @@
         <!-- Text details -->
         <text x="0" y="5" text-anchor="middle" class="orbitron hud-title">DHRUV GARG</text>
         <text x="0" y="23" text-anchor="middle" class="hud-sub">AI &amp; Systems Engineer</text>
-        <text x="0" y="-42" text-anchor="middle" class="mono hud-micro" fill="#e91e63" style="animation: opacity-pulse 2s infinite;">[ BYPASSING COMPUTATIONAL BOTTLENECKS ]</text>
+        <text x="0" y="-42" text-anchor="middle" class="mono hud-micro" fill="#ff2a85" style="animation: opacity-pulse 2s infinite;">[ BYPASSING COMPUTATIONAL BOTTLENECKS ]</text>
     </g>
 
     <!-- Micro Telemetry Readout Grid under central profile card -->
     <g transform="translate(245, 365)" class="mono hud-micro" fill="#475569">
-        <text x="0" y="0">CORE_TEMP: <tspan fill="#00bcd4">38.4°C</tspan></text>
-        <text x="0" y="12">VOLTAGE: <tspan fill="#00bcd4">1.18V</tspan></text>
-        <text x="110" y="0">SYS_LOAD: <tspan fill="#0ba360">OPTIMAL</tspan></text>
-        <text x="110" y="12">LATENCY: <tspan fill="#00bcd4">0.012ms</tspan></text>
+        <text x="0" y="0">CORE_TEMP: <tspan fill="#00f0ff">38.4°C</tspan></text>
+        <text x="0" y="12">VOLTAGE: <tspan fill="#00f0ff">1.18V</tspan></text>
+        <text x="110" y="0">SYS_LOAD: <tspan fill="#00ffaa">OPTIMAL</tspan></text>
+        <text x="110" y="12">LATENCY: <tspan fill="#00f0ff">0.012ms</tspan></text>
     </g>
 
     <!-- ================= DIAGNOSTICS LOG WINDOW ================= -->
@@ -311,320 +610,315 @@
         <text x="10" y="12" class="mono hud-micro" fill="#94a3b8">DIAGNOSTICS // LOG_STREAM</text>
         
         <!-- Window controls -->
-        <circle cx="265" cy="9" r="2.5" fill="#e91e63" opacity="0.8"/>
-        <circle cx="275" cy="9" r="2.5" fill="#ff9800" opacity="0.8"/>
-        <circle cx="285" cy="9" r="2.5" fill="#0ba360" opacity="0.8"/>
+        <circle cx="265" cy="9" r="2.5" fill="#ff2a85" opacity="0.8"/>
+        <circle cx="275" cy="9" r="2.5" fill="#ff5e00" opacity="0.8"/>
+        <circle cx="285" cy="9" r="2.5" fill="#00ffaa" opacity="0.8"/>
         
         <!-- Log lines clip -->
         <clipPath id="term-clip"><rect x="0" y="18" width="300" height="60"/></clipPath>
         <g clip-path="url(#term-clip)">
             <!-- Stepped roll-up log output -->
             <g style="animation: scroll-up-step 14s steps(12) infinite;">
-                <text x="10" y="32" class="mono hud-micro" fill="#0ba360" opacity="0.95">Initializing Tensor cores...</text>
-                <text x="10" y="46" class="mono hud-micro" fill="#0ba360" opacity="0.95">Loading YOLOv8 weights... [OK]</text>
-                <text x="10" y="60" class="mono hud-micro" fill="#0ba360" opacity="0.95">Mounting Celery workers (4/4)...</text>
-                <text x="10" y="74" class="mono hud-micro" fill="#0ba360" opacity="0.95">Establishing Postgres pool...</text>
-                <text x="10" y="88" class="mono hud-micro" fill="#0ba360" opacity="0.95">Allocating memory to GPU_0...</text>
-                <text x="10" y="102" class="mono hud-micro" fill="#0ba360" opacity="0.95">Applying Perceptual Loss fx...</text>
-                <text x="10" y="116" class="mono hud-micro" fill="#0ba360" opacity="0.95">Searching for small objects...</text>
-                <text x="10" y="130" class="mono hud-micro" fill="#0ba360" opacity="0.95">Bounding box reg: 0.04ms</text>
-                <text x="10" y="144" class="mono hud-micro" fill="#0ba360" opacity="0.95">Connection established.</text>
-                <text x="10" y="158" class="mono hud-micro" fill="#0ba360" opacity="0.95">Initializing Tensor cores...</text>
-                <text x="10" y="172" class="mono hud-micro" fill="#0ba360" opacity="0.95">Loading YOLOv8 weights... [OK]</text>
-                <text x="10" y="186" class="mono hud-micro" fill="#0ba360" opacity="0.95">Mounting Celery workers (4/4)...</text>
+                <text x="10" y="32" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Initializing Tensor cores...</text>
+                <text x="10" y="46" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Loading YOLOv8 weights... [OK]</text>
+                <text x="10" y="60" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Mounting Celery workers (4/4)...</text>
+                <text x="10" y="74" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Establishing Postgres pool...</text>
+                <text x="10" y="88" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Allocating memory to GPU_0...</text>
+                <text x="10" y="102" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Applying Perceptual Loss fx...</text>
+                <text x="10" y="116" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Searching for small objects...</text>
+                <text x="10" y="130" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Bounding box reg: 0.04ms</text>
+                <text x="10" y="144" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Connection established.</text>
+                <text x="10" y="158" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Initializing Tensor cores...</text>
+                <text x="10" y="172" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Loading YOLOv8 weights... [OK]</text>
+                <text x="10" y="186" class="mono hud-micro" fill="#00ffaa" opacity="0.95">Mounting Celery workers (4/4)...</text>
             </g>
         </g>
         
         <!-- Live CLI input line -->
         <rect x="1" y="79" width="298" height="20" fill="#050b14"/>
         <line x1="0" y1="78" x2="300" y2="78" stroke="#1e293b" stroke-width="1"/>
-        <text x="10" y="93" class="mono hud-micro" fill="#0ba360">DHRUV_SYS:~$ <tspan fill="#ffffff" style="animation: cursor-blink 1s steps(2) infinite;">█</tspan></text>
+        <text x="10" y="93" class="mono hud-micro" fill="#00ffaa">DHRUV_SYS:~$ <tspan fill="#ffffff" style="animation: cursor-blink 1s steps(2) infinite;">█</tspan></text>
     </g>
 
     <!-- ================= INTERACTIVE TECH NODES ================= -->
 
-    <!-- NODE 01: PIXELQUEUE (Cyan) -->
-    <g class="system-node" id="node-01" style="color: #00bcd4;">
+    <!-- NODE 01: PIXELQUEUE (Ice Cyan) -->
+    <g class="system-node" id="node-01" style="color: #00f0ff;">
         <!-- Connector lines (PCB Traces + Active Flow + Junction Ticks) -->
         <path class="conn-path-bg" d="M 522.3467082966426 166.91597189976625 L 552.3467082966426 166.91597189976625 L 592.3467082966426 126.91597189976625 L 612.3467082966426 87.5 L 640 87.5" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linejoin="round"/>
-        <path class="conn-trace-parallel" d="M 522.3467082966426 170.41597189976625 L 551.0967082966426 170.41597189976625 L 591.0967082966426 130.41597189976625 L 611.0967082966426 91.0 L 640 91.0" fill="none" stroke="#00bcd4" stroke-width="0.8" opacity="0.25" stroke-linejoin="round"/>
-        <path class="conn-path-active" d="M 522.3467082966426 166.91597189976625 L 552.3467082966426 166.91597189976625 L 592.3467082966426 126.91597189976625 L 612.3467082966426 87.5 L 640 87.5" fill="none" stroke="#00bcd4" stroke-width="2.5" stroke-dasharray="10 80" style="animation: dash-flow 2.5s linear infinite;" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle class="conn-dot-start" cx="522.3467082966426" cy="166.91597189976625" r="3.5" fill="#00bcd4" />
-        <circle class="conn-dot-end" cx="640" cy="87.5" r="3.5" fill="#00bcd4" />
+        <path class="conn-trace-parallel" d="M 522.3467082966426 170.41597189976625 L 551.0967082966426 170.41597189976625 L 591.0967082966426 130.41597189976625 L 611.0967082966426 91.0 L 640 91.0" fill="none" stroke="#00f0ff" stroke-width="0.8" opacity="0.25" stroke-linejoin="round"/>
+        <path class="conn-path-active" d="M 522.3467082966426 166.91597189976625 L 552.3467082966426 166.91597189976625 L 592.3467082966426 126.91597189976625 L 612.3467082966426 87.5 L 640 87.5" fill="none" stroke="#00f0ff" stroke-width="2.5" stroke-dasharray="10 80" style="animation: dash-flow 2.0s linear infinite;" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle class="conn-dot-start" cx="522.3467082966426" cy="166.91597189976625" r="3.5" fill="#00f0ff" />
+        <circle class="conn-dot-end" cx="640" cy="87.5" r="3.5" fill="#00f0ff" />
         
         <!-- PCB Corner Accents -->
-        <circle cx="552.3467082966426" cy="166.91597189976625" r="1.5" fill="none" stroke="#00bcd4" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="592.3467082966426" cy="126.91597189976625" r="1.5" fill="none" stroke="#00bcd4" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="612.3467082966426" cy="87.5" r="1.5" fill="none" stroke="#00bcd4" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="552.3467082966426" cy="166.91597189976625" r="1.5" fill="none" stroke="#00f0ff" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="592.3467082966426" cy="126.91597189976625" r="1.5" fill="none" stroke="#00f0ff" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="612.3467082966426" cy="87.5" r="1.5" fill="none" stroke="#00f0ff" stroke-width="0.8" opacity="0.6"/>
 
         <!-- Panel group -->
         <g class="panel-group">
-            <path class="panel-bg" d="M 640,40 L 1140,40 L 1160,60 L 1160,135 L 660,135 L 640,115 Z" fill="url(#panel-glass-grad)" stroke="#00bcd4" stroke-width="1.5" stroke-opacity="0.6"/>
+            <path class="panel-bg" d="M 640,40 L 1140,40 L 1160,60 L 1160,135 L 660,135 L 640,115 Z" fill="url(#panel-glass-grad)" stroke="#00f0ff" stroke-width="1.5" stroke-opacity="0.6"/>
             <!-- Glassmorphic Grid Overlay -->
             <path d="M 640,40 L 1140,40 L 1160,60 L 1160,135 L 660,135 L 640,115 Z" fill="url(#panel-grid)" opacity="0.8"/>
             <path d="M 645 45 L 1138 45 L 1155 62" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-opacity="0.3"/>
             
-            <rect x="655" y="32" width="60" height="16" fill="#00bcd4" opacity="0.95"/>
-            <text x="685" y="44" text-anchor="middle" class="orbitron hud-micro" font-weight="900" fill="#02040a">SYS.01</text>
+            <rect class="sys-badge-bg" x="655" y="32" width="60" height="16" fill="#00f0ff" opacity="0.95"/>
+            <text x="685" y="44" text-anchor="middle" class="orbitron hud-micro sys-badge-text" font-weight="900" fill="#02040a">SYS.01</text>
             
             <!-- LED status indicator -->
-            <circle cx="725" cy="40" r="3" fill="#00bcd4" style="animation: pulse-crisp 2s infinite;" />
+            <circle cx="725" cy="40" r="3" fill="#00f0ff" style="animation: pulse-crisp 2s infinite;" />
 
             <text x="660" y="68" class="panel-title">PIXELQUEUE</text>
-            <rect x="1020" y="58" width="120" height="12" rx="2" fill="#1e293b" stroke="#00bcd4" stroke-width="1" stroke-opacity="0.5"/>
-            <rect x="1020" y="58" width="120" height="12" rx="2" fill="#00bcd4" opacity="0.5" style="animation: opacity-pulse 3s infinite alternate;"/>
-            <text x="1080" y="67" text-anchor="middle" class="panel-type" fill="#f8fafc">INFRASTRUCTURE</text>
+            <rect class="badge-bg" x="1025" y="56" width="115" height="16" rx="3" fill="#070d1a" stroke="#00f0ff" stroke-width="1"/>
+            <text x="1082.5" y="68" text-anchor="middle" class="panel-type badge-text">INFRASTRUCTURE</text>
             <text x="660" y="92" class="panel-desc">High-perf human-in-the-loop annotation • Zero-latency UI</text>
             
-            <rect x="660" y="102" width="300" height="24" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.5" opacity="0.9"/>
-            <circle cx="670" cy="114" r="3" fill="#00bcd4" opacity="0.9"/>
-            <text x="680" y="119" class="panel-tech">FastAPI ⚡ Celery ⚡ React-Konva ⚡ PostgreSQL</text>
+            <rect x="660" y="102" width="375" height="24" rx="3" fill="#0f172a" stroke="#1e293b" stroke-width="1" opacity="0.9"/>
+            <circle cx="670" cy="114" r="3" fill="#00f0ff" opacity="0.9"/>
+            <text x="680" y="118" class="panel-tech">FastAPI ⚡ Celery ⚡ React-Konva ⚡ PostgreSQL</text>
             
             <!-- Mini Equalizer Visualizer -->
             <g class="mini-eq" transform="translate(975, 110)">
-                <rect class="eq-bar-1" x="0" y="0" width="2" height="12" rx="0.5" fill="#00bcd4"/>
-                <rect class="eq-bar-2" x="4" y="0" width="2" height="12" rx="0.5" fill="#00bcd4"/>
-                <rect class="eq-bar-3" x="8" y="0" width="2" height="12" rx="0.5" fill="#00bcd4"/>
-                <rect class="eq-bar-4" x="12" y="0" width="2" height="12" rx="0.5" fill="#00bcd4"/>
-                <rect class="eq-bar-5" x="16" y="0" width="2" height="12" rx="0.5" fill="#00bcd4"/>
+                <rect class="eq-bar-1" x="0" y="0" width="2" height="12" rx="0.5" fill="#00f0ff"/>
+                <rect class="eq-bar-2" x="4" y="0" width="2" height="12" rx="0.5" fill="#00f0ff"/>
+                <rect class="eq-bar-3" x="8" y="0" width="2" height="12" rx="0.5" fill="#00f0ff"/>
+                <rect class="eq-bar-4" x="12" y="0" width="2" height="12" rx="0.5" fill="#00f0ff"/>
+                <rect class="eq-bar-5" x="16" y="0" width="2" height="12" rx="0.5" fill="#00f0ff"/>
             </g>
 
             <!-- Fluctuating Performance Gauges -->
             <text x="1045" y="105" class="mono hud-micro" fill="#94a3b8">CPU</text>
             <rect x="1045" y="110" width="40" height="4" fill="#334155"/>
-            <rect class="bar-cpu-1" x="1045" y="110" width="36.8" height="4" fill="#00bcd4" opacity="0.9"/>
+            <rect class="bar-cpu-1" x="1045" y="110" width="36.8" height="4" fill="#00f0ff" opacity="0.9"/>
             
             <text x="1100" y="105" class="mono hud-micro" fill="#94a3b8">RAM</text>
             <rect x="1100" y="110" width="40" height="4" fill="#334155"/>
-            <rect class="bar-ram-1" x="1100" y="110" width="34.0" height="4" fill="#00bcd4" opacity="0.9"/>
+            <rect class="bar-ram-1" x="1100" y="110" width="34.0" height="4" fill="#00f0ff" opacity="0.9"/>
         </g>
     </g>
 
-    <!-- NODE 02: SEARCHLIGHT PROTOCOL (Pink) -->
-    <g class="system-node" id="node-02" style="color: #e91e63;">
+    <!-- NODE 02: SEARCHLIGHT PROTOCOL (Neon Pink) -->
+    <g class="system-node" id="node-02" style="color: #ff2a85;">
         <!-- Connector lines (PCB Traces + Active Flow + Junction Ticks) -->
         <path class="conn-path-bg" d="M 551.2 228.39999999999998 L 581.2 228.39999999999998 L 607.1 202.5 L 627.1 202.5 L 640 202.5" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linejoin="round"/>
-        <path class="conn-trace-parallel" d="M 551.2 231.9 L 579.9 231.9 L 605.8 206.0 L 625.8 206.0 L 640 206.0" fill="none" stroke="#e91e63" stroke-width="0.8" opacity="0.25" stroke-linejoin="round"/>
-        <path class="conn-path-active" d="M 551.2 228.39999999999998 L 581.2 228.39999999999998 L 607.1 202.5 L 627.1 202.5 L 640 202.5" fill="none" stroke="#e91e63" stroke-width="2.5" stroke-dasharray="10 80" style="animation: dash-flow 2.5s linear infinite;" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle class="conn-dot-start" cx="551.2" cy="228.39999999999998" r="3.5" fill="#e91e63" />
-        <circle class="conn-dot-end" cx="640" cy="202.5" r="3.5" fill="#e91e63" />
+        <path class="conn-trace-parallel" d="M 551.2 231.9 L 579.9 231.9 L 605.8 206.0 L 625.8 206.0 L 640 206.0" fill="none" stroke="#ff2a85" stroke-width="0.8" opacity="0.25" stroke-linejoin="round"/>
+        <path class="conn-path-active" d="M 551.2 228.39999999999998 L 581.2 228.39999999999998 L 607.1 202.5 L 627.1 202.5 L 640 202.5" fill="none" stroke="#ff2a85" stroke-width="2.5" stroke-dasharray="10 80" style="animation: dash-flow 1.8s linear infinite;" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle class="conn-dot-start" cx="551.2" cy="228.39999999999998" r="3.5" fill="#ff2a85" />
+        <circle class="conn-dot-end" cx="640" cy="202.5" r="3.5" fill="#ff2a85" />
         
         <!-- PCB Corner Accents -->
-        <circle cx="581.2" cy="228.4" r="1.5" fill="none" stroke="#e91e63" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="607.1" cy="202.5" r="1.5" fill="none" stroke="#e91e63" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="627.1" cy="202.5" r="1.5" fill="none" stroke="#e91e63" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="581.2" cy="228.4" r="1.5" fill="none" stroke="#ff2a85" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="607.1" cy="202.5" r="1.5" fill="none" stroke="#ff2a85" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="627.1" cy="202.5" r="1.5" fill="none" stroke="#ff2a85" stroke-width="0.8" opacity="0.6"/>
 
         <!-- Panel group -->
         <g class="panel-group">
-            <path class="panel-bg" d="M 640,155 L 1140,155 L 1160,175 L 1160,250 L 660,250 L 640,230 Z" fill="url(#panel-glass-grad)" stroke="#e91e63" stroke-width="1.5" stroke-opacity="0.6"/>
+            <path class="panel-bg" d="M 640,155 L 1140,155 L 1160,175 L 1160,250 L 660,250 L 640,230 Z" fill="url(#panel-glass-grad)" stroke="#ff2a85" stroke-width="1.5" stroke-opacity="0.6"/>
             <!-- Glassmorphic Grid Overlay -->
             <path d="M 640,155 L 1140,155 L 1160,175 L 1160,250 L 660,250 L 640,230 Z" fill="url(#panel-grid)" opacity="0.8"/>
             <path d="M 645 160 L 1138 160 L 1155 177" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-opacity="0.3"/>
             
-            <rect x="655" y="147" width="60" height="16" fill="#e91e63" opacity="0.95"/>
-            <text x="685" y="159" text-anchor="middle" class="orbitron hud-micro" font-weight="900" fill="#02040a">CV.02</text>
+            <rect class="sys-badge-bg" x="655" y="147" width="60" height="16" fill="#ff2a85" opacity="0.95"/>
+            <text x="685" y="159" text-anchor="middle" class="orbitron hud-micro sys-badge-text" font-weight="900" fill="#02040a">CV.02</text>
             
             <!-- LED status indicator -->
-            <circle cx="725" cy="155" r="3" fill="#e91e63" style="animation: pulse-crisp 2s infinite;" />
+            <circle cx="725" cy="155" r="3" fill="#ff2a85" style="animation: pulse-crisp 2s infinite;" />
 
             <text x="660" y="183" class="panel-title">SEARCHLIGHT PROTOCOL</text>
-            <rect x="1020" y="173" width="120" height="12" rx="2" fill="#1e293b" stroke="#e91e63" stroke-width="1" stroke-opacity="0.5"/>
-            <rect x="1020" y="173" width="120" height="12" rx="2" fill="#e91e63" opacity="0.5" style="animation: opacity-pulse 3s infinite alternate;"/>
-            <text x="1080" y="182" text-anchor="middle" class="panel-type" fill="#f8fafc">COMPUTER VISION</text>
+            <rect class="badge-bg" x="1020" y="171" width="120" height="16" rx="3" fill="#070d1a" stroke="#ff2a85" stroke-width="1"/>
+            <text x="1080" y="183" text-anchor="middle" class="panel-type badge-text">COMPUTER VISION</text>
             <text x="660" y="207" class="panel-desc">Explainable object detection for 4K aerial • Coarse-to-fine</text>
             
-            <rect x="660" y="217" width="300" height="24" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.5" opacity="0.9"/>
-            <circle cx="670" cy="229" r="3" fill="#e91e63" opacity="0.9"/>
-            <text x="680" y="234" class="panel-tech">PyTorch ⚡ YOLOv8 ⚡ LayerCAM ⚡ OpenCV</text>
+            <rect x="660" y="217" width="375" height="24" rx="3" fill="#0f172a" stroke="#1e293b" stroke-width="1" opacity="0.9"/>
+            <circle cx="670" cy="229" r="3" fill="#ff2a85" opacity="0.9"/>
+            <text x="680" y="233" class="panel-tech">PyTorch ⚡ YOLOv8 ⚡ LayerCAM ⚡ OpenCV</text>
             
             <!-- Mini Equalizer Visualizer -->
             <g class="mini-eq" transform="translate(975, 225)">
-                <rect class="eq-bar-1" x="0" y="0" width="2" height="12" rx="0.5" fill="#e91e63"/>
-                <rect class="eq-bar-2" x="4" y="0" width="2" height="12" rx="0.5" fill="#e91e63"/>
-                <rect class="eq-bar-3" x="8" y="0" width="2" height="12" rx="0.5" fill="#e91e63"/>
-                <rect class="eq-bar-4" x="12" y="0" width="2" height="12" rx="0.5" fill="#e91e63"/>
-                <rect class="eq-bar-5" x="16" y="0" width="2" height="12" rx="0.5" fill="#e91e63"/>
+                <rect class="eq-bar-1" x="0" y="0" width="2" height="12" rx="0.5" fill="#ff2a85"/>
+                <rect class="eq-bar-2" x="4" y="0" width="2" height="12" rx="0.5" fill="#ff2a85"/>
+                <rect class="eq-bar-3" x="8" y="0" width="2" height="12" rx="0.5" fill="#ff2a85"/>
+                <rect class="eq-bar-4" x="12" y="0" width="2" height="12" rx="0.5" fill="#ff2a85"/>
+                <rect class="eq-bar-5" x="16" y="0" width="2" height="12" rx="0.5" fill="#ff2a85"/>
             </g>
 
             <!-- Fluctuating Performance Gauges -->
             <text x="1045" y="220" class="mono hud-micro" fill="#94a3b8">CPU</text>
             <rect x="1045" y="225" width="40" height="4" fill="#334155"/>
-            <rect class="bar-cpu-2" x="1045" y="225" width="39.2" height="4" fill="#e91e63" opacity="0.9"/>
+            <rect class="bar-cpu-2" x="1045" y="225" width="39.2" height="4" fill="#ff2a85" opacity="0.9"/>
             
             <text x="1100" y="220" class="mono hud-micro" fill="#94a3b8">RAM</text>
             <rect x="1100" y="225" width="40" height="4" fill="#334155"/>
-            <rect class="bar-ram-2" x="1100" y="225" width="30.4" height="4" fill="#00bcd4" opacity="0.9"/>
+            <rect class="bar-ram-2" x="1100" y="225" width="30.4" height="4" fill="#00f0ff" opacity="0.9"/>
         </g>
     </g>
 
-    <!-- NODE 03: NEURAL CANVAS (Purple) -->
-    <g class="system-node" id="node-03" style="color: #9c27b0;">
+    <!-- NODE 03: NEURAL CANVAS (Neon Purple) -->
+    <g class="system-node" id="node-03" style="color: #a855f7;">
         <!-- Connector lines (PCB Traces + Active Flow + Junction Ticks) -->
         <path class="conn-path-bg" d="M 559.0814790038892 310.08246890868986 L 589.0814790038892 310.08246890868986 L 596.4990100951993 317.5 L 616.4990100951993 317.5 L 640 317.5" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linejoin="round"/>
-        <path class="conn-trace-parallel" d="M 559.0814790038892 313.58246890868986 L 587.8314790038892 313.58246890868986 L 595.2490100951993 321.0 L 615.2490100951993 321.0 L 640 321.0" fill="none" stroke="#9c27b0" stroke-width="0.8" opacity="0.25" stroke-linejoin="round"/>
-        <path class="conn-path-active" d="M 559.0814790038892 310.08246890868986 L 589.0814790038892 310.08246890868986 L 596.4990100951993 317.5 L 616.4990100951993 317.5 L 640 317.5" fill="none" stroke="#9c27b0" stroke-width="2.5" stroke-dasharray="10 80" style="animation: dash-flow 2.5s linear infinite;" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle class="conn-dot-start" cx="559.0814790038892" cy="310.08246890868986" r="3.5" fill="#9c27b0" />
-        <circle class="conn-dot-end" cx="640" cy="317.5" r="3.5" fill="#9c27b0" />
+        <path class="conn-trace-parallel" d="M 559.0814790038892 313.58246890868986 L 587.8314790038892 313.58246890868986 L 595.2490100951993 321.0 L 615.2490100951993 321.0 L 640 321.0" fill="none" stroke="#a855f7" stroke-width="0.8" opacity="0.25" stroke-linejoin="round"/>
+        <path class="conn-path-active" d="M 559.0814790038892 310.08246890868986 L 589.0814790038892 310.08246890868986 L 596.4990100951993 317.5 L 616.4990100951993 317.5 L 640 317.5" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="10 80" style="animation: dash-flow 2.2s linear infinite;" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle class="conn-dot-start" cx="559.0814790038892" cy="310.08246890868986" r="3.5" fill="#a855f7" />
+        <circle class="conn-dot-end" cx="640" cy="317.5" r="3.5" fill="#a855f7" />
         
         <!-- PCB Corner Accents -->
-        <circle cx="589.0814790038892" cy="310.08246890868986" r="1.5" fill="none" stroke="#9c27b0" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="596.4990100951993" cy="317.5" r="1.5" fill="none" stroke="#9c27b0" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="616.4990100951993" cy="317.5" r="1.5" fill="none" stroke="#9c27b0" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="589.0814790038892" cy="310.08246890868986" r="1.5" fill="none" stroke="#a855f7" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="596.4990100951993" cy="317.5" r="1.5" fill="none" stroke="#a855f7" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="616.4990100951993" cy="317.5" r="1.5" fill="none" stroke="#a855f7" stroke-width="0.8" opacity="0.6"/>
 
         <!-- Panel group -->
         <g class="panel-group">
-            <path class="panel-bg" d="M 640,270 L 1140,270 L 1160,290 L 1160,365 L 660,365 L 640,345 Z" fill="url(#panel-glass-grad)" stroke="#9c27b0" stroke-width="1.5" stroke-opacity="0.6"/>
+            <path class="panel-bg" d="M 640,270 L 1140,270 L 1160,290 L 1160,365 L 660,365 L 640,345 Z" fill="url(#panel-glass-grad)" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.6"/>
             <!-- Glassmorphic Grid Overlay -->
             <path d="M 640,270 L 1140,270 L 1160,290 L 1160,365 L 660,365 L 640,345 Z" fill="url(#panel-grid)" opacity="0.8"/>
             <path d="M 645 275 L 1138 275 L 1155 292" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-opacity="0.3"/>
             
-            <rect x="655" y="262" width="60" height="16" fill="#9c27b0" opacity="0.95"/>
-            <text x="685" y="274" text-anchor="middle" class="orbitron hud-micro" font-weight="900" fill="#02040a">GEN.03</text>
+            <rect class="sys-badge-bg" x="655" y="262" width="60" height="16" fill="#a855f7" opacity="0.95"/>
+            <text x="685" y="274" text-anchor="middle" class="orbitron hud-micro sys-badge-text" font-weight="900" fill="#02040a">GEN.03</text>
             
             <!-- LED status indicator -->
-            <circle cx="725" cy="270" r="3" fill="#9c27b0" style="animation: pulse-crisp 2s infinite;" />
+            <circle cx="725" cy="270" r="3" fill="#a855f7" style="animation: pulse-crisp 2s infinite;" />
 
             <text x="660" y="298" class="panel-title">NEURAL CANVAS</text>
-            <rect x="1020" y="288" width="120" height="12" rx="2" fill="#1e293b" stroke="#9c27b0" stroke-width="1" stroke-opacity="0.5"/>
-            <rect x="1020" y="288" width="120" height="12" rx="2" fill="#9c27b0" opacity="0.5" style="animation: opacity-pulse 3s infinite alternate;"/>
-            <text x="1080" y="297" text-anchor="middle" class="panel-type" fill="#f8fafc">GENERATIVE AI</text>
+            <rect class="badge-bg" x="1030" y="286" width="110" height="16" rx="3" fill="#070d1a" stroke="#a855f7" stroke-width="1"/>
+            <text x="1085" y="298" text-anchor="middle" class="panel-type badge-text">GENERATIVE AI</text>
             <text x="660" y="322" class="panel-desc">Real-time feed-forward style transfer • Perceptual Loss</text>
             
-            <rect x="660" y="332" width="300" height="24" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.5" opacity="0.9"/>
-            <circle cx="670" cy="344" r="3" fill="#9c27b0" opacity="0.9"/>
-            <text x="680" y="349" class="panel-tech">PyTorch ⚡ VGG-19 ⚡ CNN Architecture</text>
+            <rect x="660" y="332" width="375" height="24" rx="3" fill="#0f172a" stroke="#1e293b" stroke-width="1" opacity="0.9"/>
+            <circle cx="670" cy="344" r="3" fill="#a855f7" opacity="0.9"/>
+            <text x="680" y="348" class="panel-tech">PyTorch ⚡ VGG-19 ⚡ CNN Architecture</text>
             
             <!-- Mini Equalizer Visualizer -->
             <g class="mini-eq" transform="translate(975, 340)">
-                <rect class="eq-bar-1" x="0" y="0" width="2" height="12" rx="0.5" fill="#9c27b0"/>
-                <rect class="eq-bar-2" x="4" y="0" width="2" height="12" rx="0.5" fill="#9c27b0"/>
-                <rect class="eq-bar-3" x="8" y="0" width="2" height="12" rx="0.5" fill="#9c27b0"/>
-                <rect class="eq-bar-4" x="12" y="0" width="2" height="12" rx="0.5" fill="#9c27b0"/>
-                <rect class="eq-bar-5" x="16" y="0" width="2" height="12" rx="0.5" fill="#9c27b0"/>
+                <rect class="eq-bar-1" x="0" y="0" width="2" height="12" rx="0.5" fill="#a855f7"/>
+                <rect class="eq-bar-2" x="4" y="0" width="2" height="12" rx="0.5" fill="#a855f7"/>
+                <rect class="eq-bar-3" x="8" y="0" width="2" height="12" rx="0.5" fill="#a855f7"/>
+                <rect class="eq-bar-4" x="12" y="0" width="2" height="12" rx="0.5" fill="#a855f7"/>
+                <rect class="eq-bar-5" x="16" y="0" width="2" height="12" rx="0.5" fill="#a855f7"/>
             </g>
 
             <!-- Fluctuating Performance Gauges -->
             <text x="1045" y="335" class="mono hud-micro" fill="#94a3b8">CPU</text>
             <rect x="1045" y="340" width="40" height="4" fill="#334155"/>
-            <rect class="bar-cpu-3" x="1045" y="340" width="35.2" height="4" fill="#9c27b0" opacity="0.9"/>
+            <rect class="bar-cpu-3" x="1045" y="340" width="35.2" height="4" fill="#a855f7" opacity="0.9"/>
             
             <text x="1100" y="335" class="mono hud-micro" fill="#94a3b8">RAM</text>
             <rect x="1100" y="340" width="40" height="4" fill="#334155"/>
-            <rect class="bar-ram-3" x="1100" y="340" width="37.6" height="4" fill="#00bcd4" opacity="0.9"/>
+            <rect class="bar-ram-3" x="1100" y="340" width="37.6" height="4" fill="#00f0ff" opacity="0.9"/>
         </g>
     </g>
 
-    <!-- NODE 04: PYGOG CLI (Green) -->
-    <g class="system-node" id="node-04" style="color: #0ba360;">
+    <!-- NODE 04: PYGOG CLI (Neon Mint Green) -->
+    <g class="system-node" id="node-04" style="color: #00ffaa;">
         <!-- Connector lines (PCB Traces + Active Flow + Junction Ticks) -->
         <path class="conn-path-bg" d="M 538.7210509579438 384.3924992050233 L 568.7210509579438 384.3924992050233 L 608.7210509579438 424.3924992050233 L 628.7210509579438 432.5 L 640 432.5" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linejoin="round"/>
-        <path class="conn-trace-parallel" d="M 538.7210509579438 387.8924992050233 L 567.4710509579438 387.8924992050233 L 607.4710509579438 427.8924992050233 L 627.4710509579438 436.0 L 640 436.0" fill="none" stroke="#0ba360" stroke-width="0.8" opacity="0.25" stroke-linejoin="round"/>
-        <path class="conn-path-active" d="M 538.7210509579438 384.3924992050233 L 568.7210509579438 384.3924992050233 L 608.7210509579438 424.3924992050233 L 628.7210509579438 432.5 L 640 432.5" fill="none" stroke="#0ba360" stroke-width="2.5" stroke-dasharray="10 80" style="animation: dash-flow 2.5s linear infinite;" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle class="conn-dot-start" cx="538.7210509579438" cy="384.3924992050233" r="3.5" fill="#0ba360" />
-        <circle class="conn-dot-end" cx="640" cy="432.5" r="3.5" fill="#0ba360" />
+        <path class="conn-trace-parallel" d="M 538.7210509579438 387.8924992050233 L 567.4710509579438 387.8924992050233 L 607.4710509579438 427.8924992050233 L 627.4710509579438 436.0 L 640 436.0" fill="none" stroke="#00ffaa" stroke-width="0.8" opacity="0.25" stroke-linejoin="round"/>
+        <path class="conn-path-active" d="M 538.7210509579438 384.3924992050233 L 568.7210509579438 384.3924992050233 L 608.7210509579438 424.3924992050233 L 628.7210509579438 432.5 L 640 432.5" fill="none" stroke="#00ffaa" stroke-width="2.5" stroke-dasharray="10 80" style="animation: dash-flow 1.7s linear infinite;" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle class="conn-dot-start" cx="538.7210509579438" cy="384.3924992050233" r="3.5" fill="#00ffaa" />
+        <circle class="conn-dot-end" cx="640" cy="432.5" r="3.5" fill="#00ffaa" />
         
         <!-- PCB Corner Accents -->
-        <circle cx="568.7210509579438" cy="384.3924992050233" r="1.5" fill="none" stroke="#0ba360" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="608.7210509579438" cy="424.3924992050233" r="1.5" fill="none" stroke="#0ba360" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="628.7210509579438" cy="432.5" r="1.5" fill="none" stroke="#0ba360" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="568.7210509579438" cy="384.3924992050233" r="1.5" fill="none" stroke="#00ffaa" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="608.7210509579438" cy="424.3924992050233" r="1.5" fill="none" stroke="#00ffaa" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="628.7210509579438" cy="432.5" r="1.5" fill="none" stroke="#00ffaa" stroke-width="0.8" opacity="0.6"/>
 
         <!-- Panel group -->
         <g class="panel-group">
-            <path class="panel-bg" d="M 640,385 L 1140,385 L 1160,405 L 1160,480 L 660,480 L 640,460 Z" fill="url(#panel-glass-grad)" stroke="#0ba360" stroke-width="1.5" stroke-opacity="0.6"/>
+            <path class="panel-bg" d="M 640,385 L 1140,385 L 1160,405 L 1160,480 L 660,480 L 640,460 Z" fill="url(#panel-glass-grad)" stroke="#00ffaa" stroke-width="1.5" stroke-opacity="0.6"/>
             <!-- Glassmorphic Grid Overlay -->
             <path d="M 640,385 L 1140,385 L 1160,405 L 1160,480 L 660,480 L 640,460 Z" fill="url(#panel-grid)" opacity="0.8"/>
             <path d="M 645 390 L 1138 390 L 1155 407" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-opacity="0.3"/>
             
-            <rect x="655" y="377" width="60" height="16" fill="#0ba360" opacity="0.95"/>
-            <text x="685" y="389" text-anchor="middle" class="orbitron hud-micro" font-weight="900" fill="#02040a">AGT.04</text>
+            <rect class="sys-badge-bg" x="655" y="377" width="60" height="16" fill="#00ffaa" opacity="0.95"/>
+            <text x="685" y="389" text-anchor="middle" class="orbitron hud-micro sys-badge-text" font-weight="900" fill="#02040a">AGT.04</text>
             
             <!-- LED status indicator -->
-            <circle cx="725" cy="385" r="3" fill="#0ba360" style="animation: pulse-crisp 2s infinite;" />
+            <circle cx="725" cy="385" r="3" fill="#00ffaa" style="animation: pulse-crisp 2s infinite;" />
 
             <text x="660" y="413" class="panel-title">PYGOG CLI</text>
-            <rect x="1020" y="403" width="120" height="12" rx="2" fill="#1e293b" stroke="#0ba360" stroke-width="1" stroke-opacity="0.5"/>
-            <rect x="1020" y="403" width="120" height="12" rx="2" fill="#0ba360" opacity="0.5" style="animation: opacity-pulse 3s infinite alternate;"/>
-            <text x="1080" y="412" text-anchor="middle" class="panel-type" fill="#f8fafc">AGENTIC SYSTEMS</text>
+            <rect class="badge-bg" x="1020" y="401" width="120" height="16" rx="3" fill="#070d1a" stroke="#00ffaa" stroke-width="1"/>
+            <text x="1080" y="413" text-anchor="middle" class="panel-type badge-text">AGENTIC SYSTEMS</text>
             <text x="660" y="437" class="panel-desc">Natural language autonomous agent for Google Services</text>
             
-            <rect x="660" y="447" width="300" height="24" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.5" opacity="0.9"/>
-            <circle cx="670" cy="459" r="3" fill="#0ba360" opacity="0.9"/>
-            <text x="680" y="464" class="panel-tech">LiteLLM ⚡ Typer ⚡ Rich ⚡ OpenAI</text>
+            <rect x="660" y="447" width="375" height="24" rx="3" fill="#0f172a" stroke="#1e293b" stroke-width="1" opacity="0.9"/>
+            <circle cx="670" cy="459" r="3" fill="#00ffaa" opacity="0.9"/>
+            <text x="680" y="463" class="panel-tech">LiteLLM ⚡ Typer ⚡ Rich ⚡ OpenAI</text>
             
             <!-- Mini Equalizer Visualizer -->
             <g class="mini-eq" transform="translate(975, 455)">
-                <rect class="eq-bar-1" x="0" y="0" width="2" height="12" rx="0.5" fill="#0ba360"/>
-                <rect class="eq-bar-2" x="4" y="0" width="2" height="12" rx="0.5" fill="#0ba360"/>
-                <rect class="eq-bar-3" x="8" y="0" width="2" height="12" rx="0.5" fill="#0ba360"/>
-                <rect class="eq-bar-4" x="12" y="0" width="2" height="12" rx="0.5" fill="#0ba360"/>
-                <rect class="eq-bar-5" x="16" y="0" width="2" height="12" rx="0.5" fill="#0ba360"/>
+                <rect class="eq-bar-1" x="0" y="0" width="2" height="12" rx="0.5" fill="#00ffaa"/>
+                <rect class="eq-bar-2" x="4" y="0" width="2" height="12" rx="0.5" fill="#00ffaa"/>
+                <rect class="eq-bar-3" x="8" y="0" width="2" height="12" rx="0.5" fill="#00ffaa"/>
+                <rect class="eq-bar-4" x="12" y="0" width="2" height="12" rx="0.5" fill="#00ffaa"/>
+                <rect class="eq-bar-5" x="16" y="0" width="2" height="12" rx="0.5" fill="#00ffaa"/>
             </g>
 
             <!-- Fluctuating Performance Gauges -->
             <text x="1045" y="450" class="mono hud-micro" fill="#94a3b8">CPU</text>
             <rect x="1045" y="455" width="40" height="4" fill="#334155"/>
-            <rect class="bar-cpu-4" x="1045" y="455" width="39.6" height="4" fill="#0ba360" opacity="0.9"/>
+            <rect class="bar-cpu-4" x="1045" y="455" width="39.6" height="4" fill="#00ffaa" opacity="0.9"/>
             
             <text x="1100" y="450" class="mono hud-micro" fill="#94a3b8">RAM</text>
             <rect x="1100" y="455" width="40" height="4" fill="#334155"/>
-            <rect class="bar-ram-4" x="1100" y="455" width="32.8" height="4" fill="#00bcd4" opacity="0.9"/>
+            <rect class="bar-ram-4" x="1100" y="455" width="32.8" height="4" fill="#00f0ff" opacity="0.9"/>
         </g>
     </g>
 
-    <!-- NODE 05: OPEN SOURCE CORE (Orange) -->
-    <g class="system-node" id="node-05" style="color: #ff9800;">
+    <!-- NODE 05: OPEN SOURCE CORE (Neon Electric Orange) -->
+    <g class="system-node" id="node-05" style="color: #ff5e00;">
         <!-- Connector lines (PCB Traces + Active Flow + Junction Ticks) -->
         <path class="conn-path-bg" d="M 506.938214282232 433.2886339255825 L 536.938214282232 433.2886339255825 L 576.938214282232 473.2886339255825 L 596.938214282232 547.5 L 640 547.5" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linejoin="round"/>
-        <path class="conn-trace-parallel" d="M 506.938214282232 436.7886339255825 L 535.688214282232 436.7886339255825 L 575.688214282232 476.7886339255825 L 595.688214282232 551.0 L 640 551.0" fill="none" stroke="#ff9800" stroke-width="0.8" opacity="0.25" stroke-linejoin="round"/>
-        <path class="conn-path-active" d="M 506.938214282232 433.2886339255825 L 536.938214282232 433.2886339255825 L 576.938214282232 473.2886339255825 L 596.938214282232 547.5 L 640 547.5" fill="none" stroke="#ff9800" stroke-width="2.5" stroke-dasharray="10 80" style="animation: dash-flow 2.5s linear infinite;" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle class="conn-dot-start" cx="506.938214282232" cy="433.2886339255825" r="3.5" fill="#ff9800" />
-        <circle class="conn-dot-end" cx="640" cy="547.5" r="3.5" fill="#ff9800" />
+        <path class="conn-trace-parallel" d="M 506.938214282232 436.7886339255825 L 535.688214282232 436.7886339255825 L 575.688214282232 476.7886339255825 L 595.688214282232 551.0 L 640 551.0" fill="none" stroke="#ff5e00" stroke-width="0.8" opacity="0.25" stroke-linejoin="round"/>
+        <path class="conn-path-active" d="M 506.938214282232 433.2886339255825 L 536.938214282232 433.2886339255825 L 576.938214282232 473.2886339255825 L 596.938214282232 547.5 L 640 547.5" fill="none" stroke="#ff5e00" stroke-width="2.5" stroke-dasharray="10 80" style="animation: dash-flow 2.4s linear infinite;" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle class="conn-dot-start" cx="506.938214282232" cy="433.2886339255825" r="3.5" fill="#ff5e00" />
+        <circle class="conn-dot-end" cx="640" cy="547.5" r="3.5" fill="#ff5e00" />
         
         <!-- PCB Corner Accents -->
-        <circle cx="536.938214282232" cy="433.2886339255825" r="1.5" fill="none" stroke="#ff9800" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="576.938214282232" cy="473.2886339255825" r="1.5" fill="none" stroke="#ff9800" stroke-width="0.8" opacity="0.6"/>
-        <circle cx="596.938214282232" cy="547.5" r="1.5" fill="none" stroke="#ff9800" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="536.938214282232" cy="433.2886339255825" r="1.5" fill="none" stroke="#ff5e00" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="576.938214282232" cy="473.2886339255825" r="1.5" fill="none" stroke="#ff5e00" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="596.938214282232" cy="547.5" r="1.5" fill="none" stroke="#ff5e00" stroke-width="0.8" opacity="0.6"/>
 
         <!-- Panel group -->
         <g class="panel-group">
-            <path class="panel-bg" d="M 640,500 L 1140,500 L 1160,520 L 1160,595 L 660,595 L 640,575 Z" fill="url(#panel-glass-grad)" stroke="#ff9800" stroke-width="1.5" stroke-opacity="0.6"/>
+            <path class="panel-bg" d="M 640,500 L 1140,500 L 1160,520 L 1160,595 L 660,595 L 640,575 Z" fill="url(#panel-glass-grad)" stroke="#ff5e00" stroke-width="1.5" stroke-opacity="0.6"/>
             <!-- Glassmorphic Grid Overlay -->
             <path d="M 640,500 L 1140,500 L 1160,520 L 1160,595 L 660,595 L 640,575 Z" fill="url(#panel-grid)" opacity="0.8"/>
             <path d="M 645 505 L 1138 505 L 1155 522" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-opacity="0.3"/>
             
-            <rect x="655" y="492" width="60" height="16" fill="#ff9800" opacity="0.95"/>
-            <text x="685" y="504" text-anchor="middle" class="orbitron hud-micro" font-weight="900" fill="#02040a">OSS.05</text>
+            <rect class="sys-badge-bg" x="655" y="492" width="60" height="16" fill="#ff5e00" opacity="0.95"/>
+            <text x="685" y="504" text-anchor="middle" class="orbitron hud-micro sys-badge-text" font-weight="900" fill="#02040a">OSS.05</text>
             
             <!-- LED status indicator -->
-            <circle cx="725" cy="500" r="3" fill="#ff9800" style="animation: pulse-crisp 2s infinite;" />
+            <circle cx="725" cy="500" r="3" fill="#ff5e00" style="animation: pulse-crisp 2s infinite;" />
 
             <text x="660" y="528" class="panel-title">OPEN SOURCE CORE</text>
-            <rect x="1020" y="518" width="120" height="12" rx="2" fill="#1e293b" stroke="#ff9800" stroke-width="1" stroke-opacity="0.5"/>
-            <rect x="1020" y="518" width="120" height="12" rx="2" fill="#ff9800" opacity="0.5" style="animation: opacity-pulse 3s infinite alternate;"/>
-            <text x="1080" y="527" text-anchor="middle" class="panel-type" fill="#f8fafc">CONTRIBUTIONS</text>
+            <rect class="badge-bg" x="1030" y="516" width="110" height="16" rx="3" fill="#070d1a" stroke="#ff5e00" stroke-width="1"/>
+            <text x="1085" y="528" text-anchor="middle" class="panel-type badge-text">CONTRIBUTIONS</text>
             <text x="660" y="552" class="panel-desc">Active contributor to robust AI and Backend tooling</text>
             
-            <rect x="660" y="562" width="300" height="24" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1.5" opacity="0.9"/>
-            <circle cx="670" cy="574" r="3" fill="#ff9800" opacity="0.9"/>
-            <text x="680" y="579" class="panel-tech">Pydantic-AI ⚡ FastAPI-Silk ⚡ Python Architecture</text>
+            <rect x="660" y="562" width="375" height="24" rx="3" fill="#0f172a" stroke="#1e293b" stroke-width="1" opacity="0.9"/>
+            <circle cx="670" cy="574" r="3" fill="#ff5e00" opacity="0.9"/>
+            <text x="680" y="578" class="panel-tech">Pydantic-AI ⚡ FastAPI-Silk ⚡ Python Architecture</text>
             
             <!-- Mini Equalizer Visualizer -->
             <g class="mini-eq" transform="translate(975, 570)">
-                <rect class="eq-bar-1" x="0" y="0" width="2" height="12" rx="0.5" fill="#ff9800"/>
-                <rect class="eq-bar-2" x="4" y="0" width="2" height="12" rx="0.5" fill="#ff9800"/>
-                <rect class="eq-bar-3" x="8" y="0" width="2" height="12" rx="0.5" fill="#ff9800"/>
-                <rect class="eq-bar-4" x="12" y="0" width="2" height="12" rx="0.5" fill="#ff9800"/>
-                <rect class="eq-bar-5" x="16" y="0" width="2" height="12" rx="0.5" fill="#ff9800"/>
+                <rect class="eq-bar-1" x="0" y="0" width="2" height="12" rx="0.5" fill="#ff5e00"/>
+                <rect class="eq-bar-2" x="4" y="0" width="2" height="12" rx="0.5" fill="#ff5e00"/>
+                <rect class="eq-bar-3" x="8" y="0" width="2" height="12" rx="0.5" fill="#ff5e00"/>
+                <rect class="eq-bar-4" x="12" y="0" width="2" height="12" rx="0.5" fill="#ff5e00"/>
+                <rect class="eq-bar-5" x="16" y="0" width="2" height="12" rx="0.5" fill="#ff5e00"/>
             </g>
 
             <!-- Fluctuating Performance Gauges -->
             <text x="1045" y="565" class="mono hud-micro" fill="#94a3b8">CPU</text>
             <rect x="1045" y="570" width="40" height="4" fill="#334155"/>
-            <rect class="bar-cpu-5" x="1045" y="570" width="40.0" height="4" fill="#ff9800" opacity="0.9"/>
+            <rect class="bar-cpu-5" x="1045" y="570" width="40.0" height="4" fill="#ff5e00" opacity="0.9"/>
             
             <text x="1100" y="565" class="mono hud-micro" fill="#94a3b8">RAM</text>
             <rect x="1100" y="570" width="40" height="4" fill="#334155"/>
-            <rect class="bar-ram-5" x="1100" y="570" width="40.0" height="4" fill="#00bcd4" opacity="0.9"/>
+            <rect class="bar-ram-5" x="1100" y="570" width="40.0" height="4" fill="#00f0ff" opacity="0.9"/>
         </g>
     </g>
 
@@ -633,13 +927,13 @@
         <!-- Group 1 (Slow pulse) -->
         <g class="matrix-flicker-1">
             <text x="857" y="419" class="mono hud-micro" fill="#475569">0x6670</text>
-            <rect x="851" y="413" width="2" height="2" fill="#00bcd4" opacity="0.6"/>
+            <rect x="851" y="413" width="2" height="2" fill="#00f0ff" opacity="0.6"/>
             
             <text x="1124" y="112" class="mono hud-micro" fill="#475569">0xEC96</text>
-            <rect x="1118" y="106" width="2" height="2" fill="#00bcd4" opacity="0.6"/>
+            <rect x="1118" y="106" width="2" height="2" fill="#00f0ff" opacity="0.6"/>
             
             <text x="820" y="454" class="mono hud-micro" fill="#475569">0xBDF0</text>
-            <rect x="814" y="448" width="2" height="2" fill="#00bcd4" opacity="0.6"/>
+            <rect x="814" y="448" width="2" height="2" fill="#00f0ff" opacity="0.6"/>
             
             <text x="581" y="37" class="mono hud-micro" fill="#475569">0xD9B4</text>
             <text x="977" y="82" class="mono hud-micro" fill="#475569">0xB70D</text>
@@ -648,25 +942,25 @@
         <!-- Group 2 (Alternate Pulse) -->
         <g class="matrix-flicker-2">
             <text x="814" y="573" class="mono hud-micro" fill="#475569">0x2DFF</text>
-            <rect x="808" y="567" width="2" height="2" fill="#e91e63" opacity="0.6"/>
+            <rect x="808" y="567" width="2" height="2" fill="#ff2a85" opacity="0.6"/>
             
             <text x="438" y="461" class="mono hud-micro" fill="#475569">0x6EF2</text>
-            <rect x="432" y="455" width="2" height="2" fill="#e91e63" opacity="0.6"/>
+            <rect x="432" y="455" width="2" height="2" fill="#ff2a85" opacity="0.6"/>
             
             <text x="206" y="176" class="mono hud-micro" fill="#475569">0x9E9F</text>
-            <rect x="200" y="170" width="2" height="2" fill="#e91e63" opacity="0.6"/>
+            <rect x="200" y="170" width="2" height="2" fill="#ff2a85" opacity="0.6"/>
             
             <text x="857" y="159" class="mono hud-micro" fill="#475569">0xB526</text>
-            <rect x="851" y="153" width="2" height="2" fill="#e91e63" opacity="0.6"/>
+            <rect x="851" y="153" width="2" height="2" fill="#ff2a85" opacity="0.6"/>
             
             <text x="144" y="164" class="mono hud-micro" fill="#475569">0x4D06</text>
-            <rect x="138" y="158" width="2" height="2" fill="#e91e63" opacity="0.6"/>
+            <rect x="138" y="158" width="2" height="2" fill="#ff2a85" opacity="0.6"/>
             
             <text x="455" y="356" class="mono hud-micro" fill="#475569">0xFF8E</text>
-            <rect x="449" y="350" width="2" height="2" fill="#e91e63" opacity="0.6"/>
+            <rect x="449" y="350" width="2" height="2" fill="#ff2a85" opacity="0.6"/>
             
             <text x="802" y="438" class="mono hud-micro" fill="#475569">0xAC6B</text>
-            <rect x="796" y="432" width="2" height="2" fill="#e91e63" opacity="0.6"/>
+            <rect x="796" y="432" width="2" height="2" fill="#ff2a85" opacity="0.6"/>
             
             <text x="824" y="247" class="mono hud-micro" fill="#475569">0x4DF7</text>
             <text x="143" y="246" class="mono hud-micro" fill="#475569">0xE2CD</text>
@@ -675,16 +969,16 @@
         <!-- Group 3 (Flicker) -->
         <g class="matrix-flicker-3">
             <text x="396" y="376" class="mono hud-micro" fill="#475569">0x2A7A</text>
-            <rect x="390" y="370" width="2" height="2" fill="#0ba360" opacity="0.6"/>
+            <rect x="390" y="370" width="2" height="2" fill="#00ffaa" opacity="0.6"/>
             
             <text x="359" y="482" class="mono hud-micro" fill="#475569">0x5AF1</text>
-            <rect x="353" y="476" width="2" height="2" fill="#0ba360" opacity="0.6"/>
+            <rect x="353" y="476" width="2" height="2" fill="#00ffaa" opacity="0.6"/>
             
             <text x="1000" y="459" class="mono hud-micro" fill="#475569">0x298D</text>
-            <rect x="994" y="453" width="2" height="2" fill="#0ba360" opacity="0.6"/>
+            <rect x="994" y="453" width="2" height="2" fill="#00ffaa" opacity="0.6"/>
             
             <text x="270" y="400" class="mono hud-micro" fill="#475569">0x5F35</text>
-            <rect x="264" y="394" width="2" height="2" fill="#0ba360" opacity="0.6"/>
+            <rect x="264" y="394" width="2" height="2" fill="#00ffaa" opacity="0.6"/>
             
             <text x="538" y="166" class="mono hud-micro" fill="#475569">0x2C54</text>
             <text x="209" y="510" class="mono hud-micro" fill="#475569">0xA1FC</text>
