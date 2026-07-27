@@ -1,9 +1,7 @@
 <div align="center">
 
 <h1 align="center" style="border-bottom: none; font-size: 3.2em; margin-top: 20px; margin-bottom: 0;">Dhruv Garg</h1>
-<p align="center" style="font-size: 1.2em; color: #00D2FF; margin-top: 5px;">
-  <strong>AI / ML Engineer &bull; Computer Vision &bull; Generative AI</strong>
-</p>
+
 <p align="center" style="color: #8B949E;">
   <em>Building practical AI systems, one focused iteration at a time.</em>
 </p>
@@ -12,23 +10,9 @@
   <img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=500&size=16&pause=1500&color=8B949E&center=true&vCenter=true&width=600&height=30&lines=Experiment+%E2%86%92+Evaluate+%E2%86%92+Ship;PyTorch+%7C+OpenCV+%7C+TensorFlow;Turning+research+into+usable+tools" alt="Roles" />
 </a>
 
-<p align="center">
-  <a href="https://github.com/DhruvGarg111"><img src="https://img.shields.io/badge/Computer_Vision-0D1117?style=for-the-badge&logo=opencv&logoColor=00D2FF" alt="Computer Vision" /></a>
-  <a href="https://github.com/DhruvGarg111"><img src="https://img.shields.io/badge/Deep_Learning-0D1117?style=for-the-badge&logo=tensorflow&logoColor=FF6F00" alt="Deep Learning" /></a>
-  <a href="https://github.com/Nikolaev3Artem/fastapi-silk/pulls?q=is%3Apr+author%3ADhruvGarg111"><img src="https://img.shields.io/badge/Backend_Systems-0D1117?style=for-the-badge&logo=fastapi&logoColor=009688" alt="Backend Systems" /></a>
-</p>
-
-<p align="center">
-  <a href="https://www.dhruvgarg.tech">
-    <img src="./dhruv-tech-ecosystem.svg" alt="Dhruv Garg tech ecosystem" />
-  </a>
-</p>
-
-*Building intelligent systems that see, understand, and create.*
 
 </div>
 
----
 
 ## 🔬 Engineering Profile
 
@@ -41,9 +25,8 @@ I am a Machine Learning Engineer focused on **Computer Vision** and **Agentic AI
 
 ---
 
-## 🚀 Featured Projects
 
-### 🌟 Flagship Projects
+## 🌟 Flagship Projects
 
 <table>
 <tr>
@@ -143,22 +126,8 @@ Multi-modal depth completion using RGB + sparse depth + semantic maps. Features 
 </tr>
 </table>
 
----
 
-## 🛠️ Stack Matrix
 
-<div align="center">
-  <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,fastapi,react,opencv,docker,git,github,vscode&theme=dark" alt="stack-icons" />
-</div>
-<br>
-<div align="center">
-  <img src="https://img.shields.io/badge/VISION-OpenCV%20%7C%20YOLO-111827?style=for-the-badge&logo=opencv&logoColor=5C3EE8&labelColor=030712" alt="vision" />
-  <img src="https://img.shields.io/badge/MODELING-PyTorch%20%7C%20TensorFlow-111827?style=for-the-badge&logo=pytorch&logoColor=EE4C2C&labelColor=030712" alt="modeling" />
-  <img src="https://img.shields.io/badge/SERVING-FastAPI%20%7C%20Docker-111827?style=for-the-badge&logo=fastapi&logoColor=00E5FF&labelColor=030712" alt="serving" />
-  <img src="https://img.shields.io/badge/INTERFACE-React%20%7C%20Vercel-111827?style=for-the-badge&logo=react&logoColor=61DAFB&labelColor=030712" alt="interface" />
-</div>
-
----
 
 ## 🌐 Open Source Contributions
 
@@ -170,19 +139,9 @@ I actively contribute to the broader developer ecosystem, with recent merged wor
 *   **[Bessouat40/RAGLight](https://github.com/Bessouat40/RAGLight):** Submitted 3 PRs adding MCP server configuration CLI support (in review) and Docling-based high-fidelity PDF ingestion (open).
 *   **[pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai):** Merged Anthropic code execution tool upgrade
 
----
+<br>
 
 ## 📊 Telemetry
-
-<div align="center">
-  <img src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=dhruvgarg111&theme=date_night" alt="github-stats" height="170" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=DhruvGarg111&theme=tokyonight&hide_border=true&background=0D1117" alt="streak" height="170" />
-</div>
-
-<div align="center">
-  <img src="http://github-profile-summary-cards.vercel.app/api/cards/stats?username=dhruvgarg111&theme=date_night" alt="streak" height="160" />
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=DhruvGarg111&theme=tokyonight&bg_color=0D1117" alt="most-commit-language" height="160" />
-</div>
 
 <div align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=DhruvGarg111&bg_color=0D1117&color=67E8F9&line=22D3EE&point=F97316&area=true&hide_border=true" alt="activity-graph" />
