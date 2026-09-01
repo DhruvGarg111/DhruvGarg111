@@ -10,21 +10,17 @@
   <img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=500&size=16&pause=1500&color=8B949E&center=true&vCenter=true&width=600&height=30&lines=Experiment+%E2%86%92+Evaluate+%E2%86%92+Ship;PyTorch+%7C+OpenCV+%7C+TensorFlow;Turning+research+into+usable+tools" alt="Roles" />
 </a>
 
-
 </div>
-
 
 ## 🔬 Engineering Profile
 
-I am a Machine Learning Engineer focused on **Computer Vision** and **Agentic AI**, with a strong foundation in scalable backend systems. My engineering philosophy revolves around translating complex research papers into optimized, production-ready code.
+Machine Learning Engineer focused on **Computer Vision** and **Agentic AI**, backed by scalable distributed infrastructure. My focus is translating cutting-edge ML research into optimized, production-grade systems.
 
-*   **🎯 Focus:** Bypassing computational bottlenecks in high-resolution (4K) object detection using Explainable AI (XAI).
-*   **🤖 AI Engineering:** Building local LLM agents that seamlessly interact with third-party ecosystems (Google APIs, etc.).
-*   **⚙️ Infrastructure:** Architecting robust database migrations and building backend profilers.
-*   **💡 Goal:** I build systems that are not just intelligent, but fast, scalable, and resilient.
+* **🎯 Vision Systems:** Bypassing computational bottlenecks in 4K aerial detection via Explainable AI (LayerCAM).
+* **🤖 Agentic AI:** Engineering autonomous tool-using agents & local LLM orchestration engines.
+* **⚙️ Core Infra:** Architecting low-latency asynchronous task queues and high-throughput data pipelines.
 
 ---
-
 
 ## 🌟 Flagship Projects
 
@@ -35,13 +31,11 @@ I am a Machine Learning Engineer focused on **Computer Vision** and **Agentic AI
 ### ⚡ [PixelQueue](https://github.com/DhruvGarg111/PixelQueue)
 > *Vision Intelligence Infrastructure: A high-performance, async control panel for human-in-the-loop AI annotation.*
 
-A sleek, dark-themed control panel designed for decoupled ML microservices and robust task queues, eliminating UX bottlenecks with pure speed and instantaneous rendering.
+Decoupled ML microservices platform eliminating UI bottlenecks with instant rendering and async model workers.
 
-**Key Innovations:**
-*   🚀 **Asynchronous ML:** Non-blocking AI auto-labeling via PyTorch, LayerCAM & YOLO.
-*   ⚡ **Zero-Latency UI:** Hardware-accelerated React-Konva staging canvas.
-*   🔄 **Decoupled Workers:** Infinite horizontal scaling using Celery message brokers.
-*   🔒 **Isolated Workspaces:** Robust Role-Based Access Control (RBAC) circuits.
+* 🚀 **Asynchronous ML:** Non-blocking auto-labeling via PyTorch, LayerCAM & YOLO.
+* ⚡ **Zero-Latency UI:** Hardware-accelerated React-Konva staging canvas.
+* 🔄 **Decoupled Scale:** Distributed worker orchestration via Celery message brokers.
 
 <div align="left">
   <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" />
@@ -61,12 +55,11 @@ A sleek, dark-themed control panel designed for decoupled ML microservices and r
 ### 🔦 [The Searchlight Protocol](https://github.com/DhruvGarg111/The-Searchlight-Protocol)
 > *"Finding the needle in the haystack, from 400ft above."*
 
-A novel **coarse-to-fine computer vision pipeline** designed for efficient small object detection in high-resolution (2K/4K) aerial imagery. Tackles the critical trade-off between resolution and latency in drone forensics.
+A coarse-to-fine computer vision pipeline for efficient small-object detection in high-resolution (2K/4K) aerial imagery.
 
-**Key Innovations:**
-*   Uses **LayerCAM** to identify semantic "hotspots" before processing.
-*   Intelligently slices and zooms into regions of interest—**skipping 80%+ of empty backgrounds**.
-*   Outperforms blind sliding-window approaches (SAHI) in both speed and accuracy.
+* 🎯 **Smart Attention:** Uses LayerCAM to localize semantic hotspots before inference.
+* ⚡ **80%+ Background Skipped:** Intelligently zooms into regions of interest, bypassing empty tiles.
+* 🏆 **High Efficiency:** Outperforms blind sliding-window methods (SAHI) in speed and accuracy.
 
 <div align="left">
   <img src="https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python&logoColor=white" />
@@ -78,7 +71,6 @@ A novel **coarse-to-fine computer vision pipeline** designed for efficient small
 </td>
 </tr>
 </table>
-
 <table>
 <tr>
 <td>
@@ -86,13 +78,11 @@ A novel **coarse-to-fine computer vision pipeline** designed for efficient small
 ### 🎨 [Neural Canvas](https://github.com/DhruvGarg111/Neural-Style-Transfer)
 > *Transform any image into a masterpiece — in real-time.*
 
-A **fast neural style transfer** implementation that generates stylized images using a feed-forward CNN trained with perceptual loss. Performs instant stylization in a single forward pass.
+Fast feed-forward neural style transfer generating stylized imagery in a single forward pass.
 
-**Key Features:**
-*   🚀 **Real-time inference** with a custom residual architecture.
-*   🧠 **Perceptual content & style loss** using a pretrained VGG-16 network.
-*   🔁 **Instance Normalization** integrated for high-quality, artifact-free outputs.
-*   📦 **ONNX export** supported, ready for edge deployment.
+* 🚀 **Real-Time Inference:** Custom residual architecture trained with perceptual loss (VGG-16).
+* 🔁 **Artifact-Free:** Instance Normalization for high-fidelity texture synthesis.
+* 📦 **Edge Ready:** Full ONNX runtime export for edge deployment.
 
 <div align="left">
   <img src="https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python&logoColor=white" />
@@ -112,39 +102,36 @@ A **fast neural style transfer** implementation that generates stylized images u
 <td width="50%">
 
 **🧭 [pygog (Google CLI Agent)](https://github.com/DhruvGarg111/py-goog-cli)**  
-A powerful CLI for Google services (Gmail, Drive, Calendar). Features a built-in natural language AI agent supporting Gemini, DeepSeek, & OpenAI.  
+CLI for Google Workspace (Gmail, Drive, Calendar) with built-in natural language AI agent support.  
 `<Python>` `<Google APIs>` `<LLM Agents>`
 
 </td>
 <td width="50%">
 
 **📐 [Depth Estimation + Semantic Seg.](https://github.com/DhruvGarg111/Depth-Estimation-with-Semantic-Segmentation)**  
-Multi-modal depth completion using RGB + sparse depth + semantic maps. Features a DepthNet-style encoder-decoder trained on NYU Depth v2 with multi-scale supervision.  
+Multi-modal depth completion (RGB + sparse depth + semantics) with NYU Depth v2 supervision.  
 `<PyTorch>` `<NYU-Depth-v2>` `<Encoder-Decoder>`
 
 </td>
 </tr>
 </table>
 
-
-
-
 ## 🌐 Open Source Contributions
 
-I actively contribute to the broader developer ecosystem, with recent merged work spanning agent frameworks, AI infrastructure, developer tooling, and performance-focused ML apps. I am also an active Collaborator at [SynapseKit](https://github.com/SynapseKit/SynapseKit) organization:
+Active contributor across AI infrastructure, agent frameworks, and computer vision libraries:
 
-*   **[SynapseKit/SynapseKit](https://github.com/SynapseKit/SynapseKit):** Shipped 109 PRs covering native observability, VoiceAgent audio pipelines, graph-builder tooling, benchmark suites, CronTrigger scheduling, self-healing cost-aware agents, persistent agent memory, multimodal RAG ingestion, knowledge graph retrievers, Discord automation, cloud/data loaders, and local/self-hosted model integrations across 15+ LLM providers.
-*   **[lancedb/lancedb](https://github.com/lancedb/lancedb):** Updated LanceDB's Python Gemini embedding provider to the newer google-genai SDK and opened a fix for async event loop blocking in AsyncTable.add embeddings.
-*   **[Nikolaev3Artem/fastapi-silk](https://github.com/Nikolaev3Artem/fastapi-silk):**  Merged 5 PRs adding per-endpoint database trigger counters, multi-version compatibility matrix, SQLite+Alembic setup, SQL profiler tests, and comprehensive README documentation.
-*   **[Bessouat40/RAGLight](https://github.com/Bessouat40/RAGLight):** Submitted 3 PRs adding MCP server configuration CLI support (in review) and Docling-based high-fidelity PDF ingestion (open).
-*   **[pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai):** Merged Anthropic code execution tool upgrade
+* **[huggingface/optimum](https://github.com/huggingface/optimum):** Resolved CLI subcommand resolution for symlinked environments on RHEL/lib64 systems.
+* **[pydantic/pydantic-ai](https://github.com/pydantic/pydantic-ai):** Upgraded Anthropic code execution tooling integration.
+* **[lancedb/lancedb](https://github.com/lancedb/lancedb):** Migrated Python Gemini embedding provider to `google-genai` SDK and resolved async event loop blocking in `AsyncTable.add`.
+* **[albumentations-team/AlbumentationsX](https://github.com/albumentations-team/AlbumentationsX):** Implemented volumetric 3D transform noise models for high-performance CV augmentation.
+* **[SynapseKit/SynapseKit](https://github.com/SynapseKit/SynapseKit):** *Core Collaborator (100+ PRs)* — Built native observability, VoiceAgent pipelines, persistent memory, and multimodal RAG ingestion.
 
 <br>
 
 ## 📊 Telemetry
 
 <div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=DhruvGarg111&bg_color=0D1117&color=67E8F9&line=22D3EE&point=F97316&area=true&hide_border=true" alt="activity-graph" />
+  <img src="https://streak-stats.demolab.com/?user=DhruvGarg111&theme=tokyonight&hide_border=true&background=0D1117&ring=67E8F9&fire=F97316&currStreakLabel=67E8F9" alt="streak-stats" />
 </div>
 
 ---
